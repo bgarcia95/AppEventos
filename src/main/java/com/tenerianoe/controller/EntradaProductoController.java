@@ -40,6 +40,7 @@ public class EntradaProductoController implements Serializable {
     private Factura factura;
     private BigDecimal precioUnitario;
     private DetalleFactura detalleFactura;
+    @EJB
     private DetalleFacturaFacadeLocal detalleEJB;
     private BigDecimal totalDetalle;
 
@@ -78,18 +79,15 @@ public class EntradaProductoController implements Serializable {
         }
     }
 
-    public void guardarDetalle1() {
-        detalleEJB.create(detalleFactura);
-
-    }
 
     public void pedirCantidadProducto(SelectEvent event) {
         productoSeleccionado = ((CatalogoProducto) event.getObject());
 
     }
 
-    public void onRowSelectProveedor(SelectEvent event) {
-        proveedorSeleccionado = ((CatalogoProveedor) event.getObject());
+    public void onRowSelectProveedor(SelectEvent event1) {
+        proveedorSeleccionado = ((CatalogoProveedor) event1.getObject());
+        
 
     }
 
@@ -246,7 +244,6 @@ public class EntradaProductoController implements Serializable {
     }
     
     //Metodo para guardar Factura de compra
-    
     public void guardarCompra(){
           try {
                 for (DetalleFactura item : listaDetalleFactura) {

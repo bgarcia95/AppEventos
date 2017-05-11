@@ -33,7 +33,7 @@ public class DetalleFactura implements Serializable {
     @JoinColumn(name = "idCatalogoProducto", referencedColumnName = "idCatalogoProducto")
     @ManyToOne
     private CatalogoProducto idCatalogoProducto;
-    @JoinColumn(name = "idCatalogoProveedor", referencedColumnName = "idCatalogoProducto")
+    @JoinColumn(name = "idCatalogoProveedor", referencedColumnName = "idCatalogoProveedor")
     @ManyToOne
     private CatalogoProveedor idCatalogoProveedor;
     @Column(name = "cantidad")

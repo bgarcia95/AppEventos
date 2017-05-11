@@ -30,7 +30,7 @@
                                     <h:panelGrid id="gridBuscarDatosProveedor" columns="8" title="Datos Generales">
                                         <p:outputLabel value="Fecha Factura" style="font-weight: bold" />
                                         <p:calendar id="txtFecha"  navigator="true"  showOn="button"  
-                                                    yearRange="c-100:c+100" locale="es" pattern="dd/MM/yyyy" required="true" 
+                                                    yearRange="c-100" locale="es" pattern="dd/MM/yyyy" required="true" 
                                                     />
                                         <p:outputLabel value="N° Factura" style="width: 25px;height: 25px" />
                                         <p:inputText />
@@ -158,7 +158,7 @@
                         <div>
 
                             <p:panel  header="PROVEEDORES REGISTRADOS" toggleable="true" toggleSpeed="1000"  >
-                                <p:dataTable id="tablaProvedores" var="proveedor" value="#{proveedorController.proveedores}" selectionMode="single" rowKey="#{proveedor.idCatalogoProveedor}"
+                                  <p:dataTable id="tablaProvedores" var="proveedor" value="#{proveedorController.proveedores}" selectionMode="single" selection="#{entradaProductoController.proveedorSeleccionado}" rowKey="#{proveedor.idCatalogoProveedor}"
                                              emptyMessage="No hay datos de proveedores"
                                              paginator="true" rows="5" paginatorPosition="top"
                                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
@@ -177,7 +177,6 @@
 
                                     </f:facet>
 
-                                    <p:ajax event="rowSelect" listener="#{entradaProductoController.onRowSelectProveedor}" />
                                     <p:column headerText="Proveedor"  style="text-align: center">
                                         <h:outputText value="#{proveedor.idCatalogoProveedor}"  />
                                     </p:column>
@@ -202,7 +201,7 @@
 
                                 <p:separator/>
                                 <p:commandButton value="Cerrar" onclick="PF('dlgProveedores').hide();"/>
-                                <p:commandButton value="Seleccionar"  oncomplete="PF('dlgProveedores').hide();" 
+                                <p:commandButton process="tablaProvedores" value="Seleccionar"  oncomplete="PF('dlgProveedores').hide();" 
                                                  update="frmEntrada:gridDatosProveedor"  > 
                                     <p:effect type="bounce" event="click" />
                                 </p:commandButton>
@@ -224,7 +223,7 @@
 
                             <p:panel  header="PRODUCTOS REGISTRADOS" toggleable="true" toggleSpeed="1000" >
                                 <h:form id="frmMostrarProductos">
-                                    <p:dataTable id="tablaProductos" var="producto" value="#{productoController.productos}"  selectionMode="single" rowKey="#{producto.idCatalogoProducto}"
+                                      <p:dataTable id="tablaProductos" var="producto" value="#{productoController.productos}"  selectionMode="single" selection="#{entradaProductoController.productoSeleccionado}" rowKey="#{producto}"
                                                  emptyMessage="No hay datos de productos"
                                                  paginator="true" rows="5" paginatorPosition="bottom"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
@@ -243,7 +242,6 @@
 
                                         </f:facet>
 
-                                        <p:ajax event="rowSelect" listener="#{entradaProductoController.pedirCantidadProducto}" />
 
                                         <p:column headerText="Producto"  style="text-align: center">
                                             <h:outputText value="#{producto.producto}"  />
@@ -262,13 +260,12 @@
                                     </p:dataTable>
 
                                     <p:separator/>
-                                    <p:commandButton value="Cerrar" onclick="PF('dlgProducto').hide();"/>
+                                    <p:commandButton value="Cerrar" onclick="PF('dlgProductos').hide();"/>
 
 
-                                    <p:commandButton value="Seleccionar"   oncomplete="PF('dlgProductos').hide();" 
-                                                     update=":frmEntrada:unidadMedida :frmEntrada:idproducto"  > 
+                                    <p:commandButton process="tablaProductos" value="Seleccionar"  oncomplete="PF('dlgProductos').hide();" 
+                                                     update=":frmEntrada:gridBuscarProducto"  > 
 
-                                        <p:effect type="bounce" event="click" />
                                     </p:commandButton>
 
                                 </h:form>
