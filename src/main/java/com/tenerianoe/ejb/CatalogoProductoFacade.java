@@ -17,16 +17,16 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CatalogoProductoFacade extends AbstractFacade<CatalogoProducto> implements CatalogoProductoFacadeLocal {
 
-    @PersistenceContext(unitName = "com.mycompany_TeneriaApp_war_1.0-SNAPSHOTPU")
-    private EntityManager em;
+      @PersistenceContext(unitName = "com.mycompany_TeneriaApp_war_1.0-SNAPSHOTPU")
+      private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+      @Override
+      protected EntityManager getEntityManager() {
+            return em;
+      }
 
-    public CatalogoProductoFacade() {
-        super(CatalogoProducto.class);
-    }
-    
+      public CatalogoProductoFacade() {
+            super(CatalogoProducto.class);
+      }
+      
 }

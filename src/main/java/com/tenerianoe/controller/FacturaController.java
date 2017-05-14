@@ -81,7 +81,6 @@ public class FacturaController {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "EL valor ingresado es incorrecto"));
                   } else {
 
-                        this.listaDetalleFactura.add(detalleFactura = new DetalleFactura(0, null, productoSeleccionado, proveedorSeleccionado, detalleFactura.getCantidad(), detalleFactura.getPrecioUnitario(), BigDecimal.valueOf(detalleFactura.getPrecioUnitario().floatValue() * detalleFactura.getCantidad().floatValue())));
                         this.detalleFactura = new DetalleFactura();
                         this.productoSeleccionado = new CatalogoProducto();
                         //Calcula total de la venta

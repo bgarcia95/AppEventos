@@ -16,18 +16,18 @@ import javax.ejb.Local;
 @Local
 public interface DetalleFacturaFacadeLocal {
 
-    void create(DetalleFactura detalleFactura);
+      void create(DetalleFactura detalleFactura);
 
-    void edit(DetalleFactura detalleFactura);
+      void edit(DetalleFactura detalleFactura);
 
-    void remove(DetalleFactura detalleFactura);
+      void remove(DetalleFactura detalleFactura);
 
-    DetalleFactura find(Object id);
+      DetalleFactura find(Object id);
 
-    List<DetalleFactura> findAll();
+      List<DetalleFactura> findAll();
 
-    List<DetalleFactura> findRange(int[] range);
+      List<DetalleFactura> findRange(int[] range);
 
-    int count();
-    
+      int count();
+      
 }

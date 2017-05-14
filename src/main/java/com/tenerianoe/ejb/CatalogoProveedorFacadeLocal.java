@@ -16,18 +16,18 @@ import javax.ejb.Local;
 @Local
 public interface CatalogoProveedorFacadeLocal {
 
-    void create(CatalogoProveedor catalogoProveedor);
+      void create(CatalogoProveedor catalogoProveedor);
 
-    void edit(CatalogoProveedor catalogoProveedor);
+      void edit(CatalogoProveedor catalogoProveedor);
 
-    void remove(CatalogoProveedor catalogoProveedor);
+      void remove(CatalogoProveedor catalogoProveedor);
 
-    CatalogoProveedor find(Object id);
+      CatalogoProveedor find(Object id);
 
-    List<CatalogoProveedor> findAll();
+      List<CatalogoProveedor> findAll();
 
-    List<CatalogoProveedor> findRange(int[] range);
+      List<CatalogoProveedor> findRange(int[] range);
 
-    int count();
-    
+      int count();
+      
 }

@@ -7,283 +7,278 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <body>
+      <body>
 
-        <ui:composition template="./../../plantillas/Template.xhtml">
+            <ui:composition template="./../../plantillas/Template.xhtml">
 
 
 
-            <ui:define name="content">
-                <h4>Entrada de Productos</h4>
+                  <ui:define name="content">
+                        <h4>Entrada de Productos</h4>
 
 
-                <h:form id="frmEntrada">
-                    <p:panel header="Registros de Facturas de Compras de Productos" style="width: 1000px;margin: 0 auto; text-align:center ">
-                        <!--- Dialogo para mostrar datos de Proveedor Seleccionado -->
+                        <h:form id="frmEntrada">
+                              <p:panel header="Registros de Facturas de Compras de Productos" style="width: 1000px;margin: 0 auto; text-align:center ">
+                                    <!--- Dialogo para mostrar datos de Proveedor Seleccionado -->
 
 
-                        <p:layout id="capaDatosEntrada" style="width: 100%; height: 280px">
-                            <p:layoutUnit id="datosEntrada" position="center" 
-                                          style="padding: 5px; text-align: justify;font-size: 14px" 
-                                          size="600">
-                                <p:panel header="Datos Generales de Factura">
-                                    <h:panelGrid id="gridBuscarDatosProveedor" columns="8" title="Datos Generales">
-                                        <p:outputLabel value="Fecha Factura" style="font-weight: bold" />
-                                        <p:calendar id="txtFecha"  navigator="true"  showOn="button"  
-                                                    yearRange="c-100" locale="es" pattern="dd/MM/yyyy" required="true" 
-                                                    />
-                                        <p:outputLabel value="N° Factura" style="width: 25px;height: 25px" />
-                                        <p:inputText />
+                                    <p:layout id="capaDatosEntrada" style="width: 100%; height: 280px">
+                                          <p:layoutUnit id="datosEntrada" position="center" 
+                                                        style="padding: 5px; text-align: justify;font-size: 14px" 
+                                                        size="600">
+                                                <p:panel header="Datos Generales de Factura">
+                                                      <h:panelGrid id="gridBuscarDatosProveedor" columns="8" title="Datos Generales">
+                                                            <p:outputLabel value="Fecha Factura" style="font-weight: bold" />
+                                                            <p:calendar id="txtFecha"  navigator="true"  showOn="button"  
+                                                                        yearRange="c-100:c-0" locale="es" pattern="dd/MM/yyyy" required="true" 
+                                                                        value="#{entradaProductoController.factura.fechaRegistro}" />
+                                                            <p:outputLabel value="N° Factura" style="width: 25px;height: 25px" />
+                                                            <p:inputText value="#{entradaProductoController.factura.numeroFactura}" />
 
 
-                                        <p:commandButton value="Buscar Proveedor" oncomplete="PF('dlgProveedores').show();"
-                                                         update='frmEntrada:dlgProveedor'/>
+                                                            <p:commandButton value="Buscar Proveedor" oncomplete="PF('dlgProveedores').show();"
+                                                                             update='frmEntrada:dlgProveedor'/>
 
 
-                                    </h:panelGrid>
-                                </p:panel>
-                                <p:separator/>
-                                <p:panel header="Datos de Proveedor">
-                                    <h:panelGrid id="gridDatosProveedor" columns="2">
-                                        <p:outputLabel value="Proveedor" style="font-weight: bold"/>
-                                        <p:outputLabel id="lblProveedor" value="#{entradaProductoController.proveedorSeleccionado.proveedor}" style="font-weight: bold"/>
+                                                      </h:panelGrid>
+                                                </p:panel>
+                                                <p:separator/>
+                                                <p:panel header="Datos de Proveedor">
+                                                      <h:panelGrid id="gridDatosProveedor" columns="2">
+                                                            <p:outputLabel value="Proveedor" style="font-weight: bold"/>
+                                                            <p:outputLabel id="lblProveedor" value="#{entradaProductoController.proveedorSeleccionado.proveedor}" style="font-weight: bold"/>
 
-                                        <p:outputLabel value="Propietario" style="font-weight: bold"/>
-                                        <p:outputLabel id="lblPropietario" value="#{entradaProductoController.proveedorSeleccionado.propietario}" style="font-weight: bold"/>
+                                                            <p:outputLabel value="Propietario" style="font-weight: bold"/>
+                                                            <p:outputLabel id="lblPropietario" value="#{entradaProductoController.proveedorSeleccionado.propietario}" style="font-weight: bold"/>
 
-                                        <p:outputLabel value="Direccion Proveedor" style="font-weight: bold"/>
-                                        <p:outputLabel id="lblDireccionProveedor" value="#{entradaProductoController.proveedorSeleccionado.direccion}" style="font-weight: bold"/>
+                                                            <p:outputLabel value="Direccion Proveedor" style="font-weight: bold"/>
+                                                            <p:outputLabel id="lblDireccionProveedor" value="#{entradaProductoController.proveedorSeleccionado.direccion}" style="font-weight: bold"/>
 
-                                        <p:outputLabel value="Telefono Proveedor" style="font-weight: bold"/>
-                                        <p:outputLabel id="lblTelefonoProveedor" value="#{entradaProductoController.proveedorSeleccionado.telefono}" style="font-weight: bold"/>
+                                                            <p:outputLabel value="Telefono Proveedor" style="font-weight: bold"/>
+                                                            <p:outputLabel id="lblTelefonoProveedor" value="#{entradaProductoController.proveedorSeleccionado.telefono}" style="font-weight: bold"/>
 
-                                    </h:panelGrid>
+                                                      </h:panelGrid>
 
-                                </p:panel>
+                                                </p:panel>
 
-                            </p:layoutUnit>
+                                          </p:layoutUnit>
 
 
 
-                        </p:layout>
-                        <p:separator/>
-                        <p:layout style="width: 100%; height: 180px" >
-                            <p:layoutUnit id="datosEntradaProducto" position="center" 
-                                          style="padding: 5px; text-align: justify;font-size: 14px" 
-                                          size="600">
-                                <p:panel header="Producto" >
-                                    <p:panelGrid id="gridBuscarProducto"   columns="4">
-                                        <p:commandButton value="Buscar Producto" oncomplete="PF('dlgProductos').show();"
-                                                         />
+                                    </p:layout>
+                                    <p:separator/>
+                                    <p:layout style="width: 100%; height: 180px" >
+                                          <p:layoutUnit id="datosEntradaProducto" position="center" 
+                                                        style="padding: 5px; text-align: justify;font-size: 14px" 
+                                                        size="600">
+                                                <p:panel header="Producto" >
+                                                      <p:panelGrid id="gridBuscarProducto"   columns="4">
+                                                            <p:commandButton value="Buscar Producto" oncomplete="PF('dlgProductos').show();"
+                                                                             />
 
-                                        <p:inputText  id="idproducto" value="#{entradaProductoController.productoSeleccionado.producto}" disabled="true" size="12"/>
-                                        <p:outputLabel   value="Unidad de Medida"/>
-                                        <p:inputText id="unidadMedida" disabled="true" value="#{entradaProductoController.productoSeleccionado.unidadMedida}"/>
-                                        <p:outputLabel value="Cantidad"/>
-                                        <p:inputNumber id="txtCantidadProductoI" value="#{entradaProductoController.detalleFactura.cantidad}"  required="true">
-                                              <p:ajax  event="blur" listener="#{entradaProductoController.detalleFactura.setCantidad(txtCantidadProductoI)}" />
+                                                            <p:inputText  id="idproducto" value="#{entradaProductoController.productoSeleccionado.producto}" disabled="true" size="12"/>
+                                                            <p:outputLabel   value="Unidad de Medida"/>
+                                                            <p:inputText id="unidadMedida" disabled="true" value="#{entradaProductoController.productoSeleccionado.unidadMedida}"/>
+                                                            <p:outputLabel value="Cantidad"/>
+                                                            <p:inputNumber id="txtCantidadProductoI" value="#{entradaProductoController.detalleFactura.cantidad}"  >
+                                                            </p:inputNumber>
+                                                            <p:outputLabel value="PrecioUnitario"/>
+                                                            <p:inputNumber id="txtPrecioUnitarioI" symbol="$" value="#{entradaProductoController.detalleFactura.precioUnitario}" >
+                                                            </p:inputNumber>
 
-                                        </p:inputNumber>
-                                        <p:outputLabel value="PrecioUnitario"/>
-                                        <p:inputNumber id="txtPrecioUnitarioI" symbol="$" value="#{entradaProductoController.detalleFactura.precioUnitario}" >
-                                            <p:ajax   event="blur"    listener="#{entradaProductoController.detalleFactura.setPrecioUnitario(txtPrecioUnitarioI)}" />
 
-                                        </p:inputNumber>
+                                                            <p:commandButton value="Guardar" actionListener="#{entradaProductoController.guardarDetalle()}" 
+                                                                             update=":frmEntrada:tablaDetalleFactura :frmEntrada:gridTotalFactura :frmEntrada:gridBuscarProducto frmEntrada:gridDatosProveedor"/>
 
+                                                      </p:panelGrid>
+                                                </p:panel>
+                                          </p:layoutUnit>
+                                    </p:layout>
+                                    <p:separator/>
 
-                                        <p:commandButton value="Guardar" actionListener="#{entradaProductoController.guardarDetalle()}" 
-                                                         update=":frmEntrada:tablaDetalleFactura :frmEntrada:gridTotalFactura"/>
-                                    </p:panelGrid>
-                                </p:panel>
-                            </p:layoutUnit>
-                        </p:layout>
-                        <p:separator/>
+                                    <!-- Tabla detalle Factura -->
+                                    <p:dataTable id="tablaDetalleFactura" var="detalle" value="#{entradaProductoController.listaDetalleFactura}" editable="true" editMode="cell">
+                                          <p:column headerText="Producto">
+                                                <h:outputText value="#{detalle.idCatalogoProducto.producto}"/>
+                                          </p:column>
 
-                        <!-- Tabla detalle Factura -->
-                        <p:dataTable id="tablaDetalleFactura" var="detalle" value="#{entradaProductoController.listaDetalleFactura}" editable="true" editMode="cell">
-                            <p:column headerText="Producto">
-                                <h:outputText value="#{detalle.idCatalogoProducto.producto}"/>
-                            </p:column>
 
+                                          <p:column headerText="Unidad de Medida">
 
-                            <p:column headerText="Unidad de Medida">
+                                                <h:outputText value="#{detalle.idCatalogoProducto.unidadMedida}" />
 
-                                <h:outputText value="#{detalle.idCatalogoProducto.unidadMedida}" />
+                                          </p:column>
 
-                            </p:column>
+                                          <p:column headerText="Cantidad Producto">
 
-                            <p:column headerText="Cantidad Producto">
+                                                <h:outputText value="#{detalle.cantidad}" />
 
-                                <h:outputText value="#{detalle.cantidad}" />
+                                          </p:column>
 
-                            </p:column>
+                                          <p:column headerText="Precio Unitario">
 
-                            <p:column headerText="Precio Unitario">
+                                                $<h:outputText value="#{detalle.precioUnitario}" />
 
-                                $<h:outputText value="#{detalle.precioUnitario}" />
+                                          </p:column>
 
-                            </p:column>
+                                          <p:column  id="total" headerText="Total">
 
-                            <p:column  id="total" headerText="Total">
+                                                <h:outputText  id="txtTotal" value="#{detalle.totalCompra}" >
 
-                                <h:outputText  id="txtTotal" value="#{detalle.totalCompra}" >
-
-                                </h:outputText>
-                            </p:column>
-
-                        </p:dataTable>
-
-
-                        <h:panelGrid id="gridTotalFactura" columns="2" style="font-size: 24px; margin: 0 auto">
-                            Total Factura $
-                            <p:outputLabel value="#{entradaProductoController.factura.totalVenta}"/>
-                        </h:panelGrid>
-
-
-                        <p:separator/>
-                        <p:commandButton value="Registrar" actionListener="#{entradaProductoController.guardarCompra()}" style="width: 150px;height: 60px"/>
-                        <p:commandButton value="Imprimir" style="width: 150px;height: 60px"/>
-                        <p:commandButton value="Cancelar" action="#{entradaProductoController.limpiarFactura()}" 
-                                         update=":frmEntrada:gridBuscarProducto :frmEntrada:gridDatosProveedor"
-                                         style="width: 150px;height: 60px"/>
-                    </p:panel>
-
-
-
-                    <!--- Dialogo para mostrar Proveedores -->
-                    <p:dialog id="dlgProveedor" widgetVar="dlgProveedores" modal="true" 
-                              resizable="false" showEffect="explode" hideEffect="explode" style="width: 700px">
-
-
-                        <div>
-
-                            <p:panel  header="PROVEEDORES REGISTRADOS" toggleable="true" toggleSpeed="1000"  >
-                                  <p:dataTable id="tablaProvedores" var="proveedor" value="#{proveedorController.proveedores}" selectionMode="single" selection="#{entradaProductoController.proveedorSeleccionado}" rowKey="#{proveedor.idCatalogoProveedor}"
-                                             emptyMessage="No hay datos de proveedores"
-                                             paginator="true" rows="5" paginatorPosition="top"
-                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
-                                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" style="width: 900px" >
-
-                                    <f:facet name="header" >
-                                        <p:outputPanel style="height: available">
-                                            <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
-                                            <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
-
-
-                                        </p:outputPanel>
-                                        <p:separator/>
-                                        <BR/>
-
-                                    </f:facet>
-
-                                    <p:column headerText="Proveedor"  style="text-align: center">
-                                        <h:outputText value="#{proveedor.idCatalogoProveedor}"  />
-                                    </p:column>
-                                    <p:column headerText="Propietario"  style="text-align: center">
-                                        <h:outputText value="#{proveedor.propietario}"/>
-                                    </p:column>
-                                    <p:column headerText="NIT"  style="text-align: center">
-                                        <h:outputText value="#{proveedor.nit}"/>
-                                    </p:column>
-                                    <p:column headerText="DUI"   style="text-align: center">
-                                        <h:outputText value="#{proveedor.dui}"/>
-                                    </p:column>
-
-                                    <p:column headerText="Direccion"  style="text-align: center">
-                                        <h:outputText value="#{proveedor.direccion}"/>
-                                    </p:column>
-
-
-
-
-                                </p:dataTable>
-
-                                <p:separator/>
-                                <p:commandButton value="Cerrar" onclick="PF('dlgProveedores').hide();"/>
-                                <p:commandButton process="tablaProvedores" value="Seleccionar"  oncomplete="PF('dlgProveedores').hide();" 
-                                                 update="frmEntrada:gridDatosProveedor"  > 
-                                    <p:effect type="bounce" event="click" />
-                                </p:commandButton>
-
-
-                            </p:panel>
-                        </div>
-
-                    </p:dialog>
-
-
-                    <!-- Dialogo Para Mostrar el producto que va agregar al detalle de la factura -->
-
-                    <p:dialog id="dlgProducto" widgetVar="dlgProductos" modal="true" 
-                              resizable="false" showEffect="explode" hideEffect="explode" style="width: 700px">
-
-
-                        <div>
-
-                            <p:panel  header="PRODUCTOS REGISTRADOS" toggleable="true" toggleSpeed="1000" >
-                                <h:form id="frmMostrarProductos">
-                                      <p:dataTable id="tablaProductos" var="producto" value="#{productoController.productos}"  selectionMode="single" selection="#{entradaProductoController.productoSeleccionado}" rowKey="#{producto}"
-                                                 emptyMessage="No hay datos de productos"
-                                                 paginator="true" rows="5" paginatorPosition="bottom"
-                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
-                                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                 rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" style="width: 900px" >
-
-                                        <f:facet name="header" >
-                                            <p:outputPanel style="height: available">
-                                                <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
-                                                <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
-
-
-                                            </p:outputPanel>
-                                            <p:separator/>
-                                            <BR/>
-
-                                        </f:facet>
-
-
-                                        <p:column headerText="Producto"  style="text-align: center">
-                                            <h:outputText value="#{producto.producto}"  />
-                                        </p:column>
-
-                                        <p:column headerText="Unidad de Medida"  style="text-align: center">
-                                            <h:outputText value="#{producto.unidadMedida}"/>
-                                        </p:column>
-
-                                        <p:column headerText="StockActual"  style="text-align: center">
-                                            <h:outputText value="#{producto.stockActual}"/>
-                                        </p:column>
-
-
+                                                </h:outputText>
+                                          </p:column>
 
                                     </p:dataTable>
 
+
+                                    <h:panelGrid id="gridTotalFactura" columns="2" style="font-size: 24px; margin: 0 auto">
+                                          Total Factura $
+                                          <p:outputLabel value="#{entradaProductoController.factura.totalVenta}"/>
+                                    </h:panelGrid>
+
+
                                     <p:separator/>
-                                    <p:commandButton value="Cerrar" onclick="PF('dlgProductos').hide();"/>
-
-
-                                    <p:commandButton process="tablaProductos" value="Seleccionar"  oncomplete="PF('dlgProductos').hide();" 
-                                                     update=":frmEntrada:gridBuscarProducto"  > 
-
-                                    </p:commandButton>
-
-                                </h:form>
-                            </p:panel>
-                        </div>
-
-                    </p:dialog>
+                                    <p:commandButton value="Registrar" actionListener="#{entradaProductoController.guardarCompra()}" style="width: 150px;height: 60px"/>
+                                    <p:commandButton value="Imprimir" style="width: 150px;height: 60px"/>
+                                    <p:commandButton value="Cancelar" action="#{entradaProductoController.limpiarFactura()}" 
+                                                     update=":frmEntrada:gridBuscarProducto :frmEntrada:gridDatosProveedor"
+                                                     style="width: 150px;height: 60px"/>
+                              </p:panel>
 
 
 
-                </h:form>
-            </ui:define>
+                              <!--- Dialogo para mostrar Proveedores -->
+                              <p:dialog id="dlgProveedor" widgetVar="dlgProveedores" modal="true" 
+                                        resizable="false" showEffect="explode" hideEffect="explode" style="width: 700px">
 
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
 
-        </ui:composition>
+                                    <div>
 
-    </body>
+                                          <p:panel  header="PROVEEDORES REGISTRADOS" toggleable="true" toggleSpeed="1000"  >
+                                                <p:dataTable id="tablaProvedores" var="proveedor" value="#{proveedorController.proveedores}" 
+                                                         
+                                                             emptyMessage="No hay datos de proveedores"
+                                                             paginator="true" rows="5" paginatorPosition="top"
+                                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                             rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" style="width: 900px" >
+
+                                                      <f:facet name="header" >
+                                                            <p:outputPanel style="height: available">
+                                                                  <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
+                                                                  <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
+
+
+                                                            </p:outputPanel>
+                                                            <p:separator/>
+                                                            <BR/>
+
+                                                      </f:facet>
+
+                                                      <p:column headerText="Proveedor"  style="text-align: center">
+                                                            <h:outputText value="#{proveedor.proveedor}"  />
+                                                      </p:column>
+                                                      <p:column headerText="Propietario"  style="text-align: center">
+                                                            <h:outputText value="#{proveedor.propietario}"/>
+                                                      </p:column>
+                                                      <p:column headerText="NIT"  style="text-align: center">
+                                                            <h:outputText value="#{proveedor.nit}"/>
+                                                      </p:column>
+                                                      <p:column headerText="DUI"   style="text-align: center">
+                                                            <h:outputText value="#{proveedor.dui}"/>
+                                                      </p:column>
+
+                                                      <p:column headerText="Direccion"  style="text-align: center">
+                                                            <h:outputText value="#{proveedor.direccion}"/>
+                                                      </p:column>
+
+                                                      <p:column headerText="Accion">
+                                                            <p:commandButton process="tablaProvedores" value="Seleccionar"  oncomplete="PF('dlgProveedores').hide();" 
+                                                                             update="frmEntrada:gridDatosProveedor"  > 
+                                                                  <p:effect type="bounce" event="click" />
+                                                                  <f:setPropertyActionListener value="#{proveedor}" target="#{entradaProductoController.proveedorSeleccionado}" />
+                                                            </p:commandButton>
+                                                      </p:column>
+                                                </p:dataTable>
+
+                                                <p:separator/>
+                                                <p:commandButton value="Cerrar" onclick="PF('dlgProveedores').hide();"/>
+
+
+
+                                          </p:panel>
+                                    </div>
+
+                              </p:dialog>
+
+
+                              <!-- Dialogo Para Mostrar el producto que va agregar al detalle de la factura -->
+
+                              <p:dialog id="dlgProducto" widgetVar="dlgProductos" modal="true" 
+                                        resizable="false" showEffect="explode" hideEffect="explode" style="width: 700px">
+
+
+                                    <div>
+
+                                          <p:panel  header="PRODUCTOS REGISTRADOS" toggleable="true" toggleSpeed="1000" >
+                                                <h:form id="frmMostrarProductos">
+                                                      <p:dataTable id="tablaProductos" var="producto" value="#{productoController.productos}"
+                                                       
+                                                                   emptyMessage="No hay datos de productos"
+                                                                   paginator="true" rows="5" paginatorPosition="bottom"
+                                                                   paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                                                   {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                   rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" style="width: 900px" >
+                                                            <f:facet name="header" >
+                                                                  <p:outputPanel style="height: available">
+                                                                        <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
+                                                                        <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
+                                                                  </p:outputPanel>
+                                                                  <p:separator/>
+                                                                  <BR/>
+                                                            </f:facet>
+                                                            <p:column headerText="Producto"  style="text-align: center">
+                                                                  <h:outputText value="#{producto.producto}"  />
+                                                            </p:column>
+
+                                                            <p:column headerText="Unidad de Medida"  style="text-align: center">
+                                                                  <h:outputText value="#{producto.unidadMedida}"/>
+                                                            </p:column>
+
+                                                            <p:column headerText="StockActual"  style="text-align: center">
+                                                                  <h:outputText value="#{producto.stockActual}"/>
+                                                            </p:column>
+
+                                                            <p:column headerText="Acccion">
+                                                                  <p:commandButton process="tablaProductos" value="Seleccionar"  oncomplete="PF('dlgProductos').hide();" 
+                                                                                   update=":frmEntrada:gridBuscarProducto"  > 
+                                                                        <f:setPropertyActionListener value="#{producto}" target="#{entradaProductoController.productoSeleccionado}" />
+                                                                  </p:commandButton>
+                                                            </p:column>
+                                                      </p:dataTable>
+
+                                                      <p:separator/>
+                                                      <p:commandButton value="Cerrar" onclick="PF('dlgProductos').hide();"/>
+
+
+
+
+                                                </h:form>
+                                          </p:panel>
+                                    </div>
+
+                              </p:dialog>
+
+
+
+                        </h:form>
+                  </ui:define>
+
+                  <ui:define name="bottom">
+                        bottom
+                  </ui:define>
+
+            </ui:composition>
+
+      </body>
 </html>
