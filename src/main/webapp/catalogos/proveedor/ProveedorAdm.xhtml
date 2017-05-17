@@ -18,11 +18,11 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="panel panel-primary" style="border-color: black">
                                 <div class="panel-body" >
-<!--                                    <div class="row" align="center" >
-                                        <div class="form-group">
-                                            <h2 style="">Proveedores</h2>  
-                                        </div>
-                                    </div>-->
+                                    <!--                                    <div class="row" align="center" >
+                                                                            <div class="form-group">
+                                                                                <h2 style="">Proveedores</h2>  
+                                                                            </div>
+                                                                        </div>-->
 
 
                                     <div class="row">
@@ -39,15 +39,21 @@
                                                         <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
 
                                                         <div class="panel panel-primary" style="border-color: black">
-                                                            <div class="panel-heading" style="border-color: black;text-align: center;background-color:#B7B56E;color: black">Registro de Proveedores</div>
+                                                            <div class="panel-heading" style="border-color: black;text-align: center;background-color:#B7B56E;color: black"><h4>Registro de Proveedores</h4></div>
                                                             <div class="panel-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-4"></div> 
+                                                                    <div class="col-md-4" style="text-align: center">
+                                                                        <h4><u>Datos del proveedor</u></h4>
+                                                                    </div>
+                                                                </div>
                                                                 <br/>
                                                                 <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
                                                                     Nombre del Proveedor:
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="nombreP" class="form-control" value="" style=""/> 
+                                                                    <h:inputText id="nombreP" class="form-control" value="#{proveedorController.proveedor.proveedor}" style=""/> 
 
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -59,7 +65,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="nombreProp" class="form-control" value=""/>
+                                                                    <h:inputText id="nombreProp" class="form-control" value="#{proveedorController.proveedor.propietario}"/>
 
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -72,7 +78,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="DUI" value="" class="form-control"/>
+                                                                    <h:inputText id="DUI" value="#{proveedorController.proveedor.dui}" class="form-control"/>
 
                                                                 </div>
 
@@ -87,7 +93,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="NITP" class="form-control" value="" style=""/> 
+                                                                    <h:inputText id="NITP" class="form-control" value="#{proveedorController.proveedor.nit}" style=""/> 
 
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -98,7 +104,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="DireccionP" class="form-control" value="" style=""/> 
+                                                                    <h:inputText id="DireccionP" class="form-control" value="#{proveedorController.proveedor.direccion}" style=""/> 
 
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -109,7 +115,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="telefonoP" class="form-control" value="" style=""/> 
+                                                                    <h:inputText id="telefonoP" class="form-control" value="#{proveedorController.proveedor.telefono}" style=""/> 
 
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -117,7 +123,7 @@
                                                                 <br/><br/>
                                                                 <div class ="col-md-5" style=""></div>
                                                                 <div class="col-md-2" align="center" >
-                                                                    <h:commandButton id="btnRegistrar"  action="adminProveedores.xhtml" value="Registrar" class="form-control" style="background-color:#B7B56E;color: black;border-color: black"/>
+                                                                    <h:commandButton id="btnRegistrar"  actionListener="#{proveedorController.registrar()}" action="ProveedorAdm.xhtml" value="Registrar" class="form-control" style="background-color:#B7B56E;color: black;border-color: black"/>
 
                                                                 </div>
                                                                 <div class="col-md-5"></div>
@@ -130,7 +136,7 @@
 
                                                 <br/>
 
-<!--                                                <div class="panel panel-primary" style="border-color: black;"/>Separator parte de abajo-->
+                                                <!--                                                <div class="panel panel-primary" style="border-color: black;"/>Separator parte de abajo-->
 
 
                                                 <br/>
