@@ -36,7 +36,7 @@ public class LoginController implements Serializable {
             us = usuarioEJB.iniciarSesion(usuario);
 
             if (us != null) {
-                redireccion = "/plantillas/Template.xhtml";
+                redireccion = "/TeneriaOriginal/catalogos/proveedor/ProveedorAdm.xhtml";
 
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
