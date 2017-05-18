@@ -57,7 +57,7 @@
                                                                                     <p:outputPanel style="height: available">
                                                                                         <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
                                                                                         <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
-                                                                                        
+
                                                                                     </p:outputPanel>
                                                                                     <p:separator/>
                                                                                     <BR/>
@@ -111,13 +111,13 @@
                         </div>
                     </div>
                 </div>
-                
- 
-                
+
+
+
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog modal-lg">
-
+                        
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -125,6 +125,7 @@
                                 <h3 class="modal-title" style="text-align: center"><u>Registro de nuevo proveedor</u></h3>
                             </div>
                             <div class="modal-body" style="border-color: black">
+                                <br/>
                                 <div class="container">
                                     <h:form id="frmProveedoresModel">
                                         <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
@@ -247,61 +248,61 @@
 
                 <p:dialog id="dlg" header="MODIFICAR PROVEEDOR" showEffect="modal" hideEffect="fade" widgetVar="dlgmodificar" modal="true">
 
-                        <div>
-                            <p:growl showDetail="No se realizo el registro"  showSummary="true" id="growl1"  />
-                            <p:messages id="mensaje" />
-                            <h:form id="frmModificar">
-                                <p:fieldset  legend="REGISTRO DE PROVEEDORES" style="align-content: center;align-self: center" >
-                                    <div>
-                                        <p:panel id="panelDatos" header="DATOS DEL PROVEEDOR" toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelDt" style="align-content: center;align-items: center;width: content-box">
-                                            <div align="center"  style="padding: auto; width: 300"  >
-                                                <h:panelGrid cellpadding="15" columns="3" id="pgDatos"   style="align-items: center; align-content: center; "  columnClasses="centered" >
+                    <div>
+                        <p:growl showDetail="No se realizo el registro"  showSummary="true" id="growl1"  />
+                        <p:messages id="mensaje" />
+                        <h:form id="frmModificar">
+                            <p:fieldset  legend="REGISTRO DE PROVEEDORES" style="align-content: center;align-self: center" >
+                                <div>
+                                    <p:panel id="panelDatos" header="DATOS DEL PROVEEDOR" toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelDt" style="align-content: center;align-items: center;width: content-box">
+                                        <div align="center"  style="padding: auto; width: 300"  >
+                                            <h:panelGrid cellpadding="15" columns="3" id="pgDatos"   style="align-items: center; align-content: center; "  columnClasses="centered" >
 
-                                                    <p:outputLabel for="txtProveedor" value="Nombre de Proveedor" />
-                                                    <p:inputText id="txtProveedor" value="#{proveedorController.proveedor.proveedor}" required="true"/>
-                                                    <p:message for="txtProveedor"/>
+                                                <p:outputLabel for="txtProveedor" value="Nombre de Proveedor" />
+                                                <p:inputText id="txtProveedor" value="#{proveedorController.proveedor.proveedor}" required="true"/>
+                                                <p:message for="txtProveedor"/>
 
-                                                    <p:outputLabel for="txtPropietario" value="Nombre de Propietario"/>
-                                                    <p:inputText id="txtPropietario" value="#{proveedorController.proveedor.propietario}" required="true"/>
-                                                    <p:message for="txtPropietario"/>
+                                                <p:outputLabel for="txtPropietario" value="Nombre de Propietario"/>
+                                                <p:inputText id="txtPropietario" value="#{proveedorController.proveedor.propietario}" required="true"/>
+                                                <p:message for="txtPropietario"/>
 
 
-                                                    <p:outputLabel for="txtDUI" value="DUI"/>
-                                                    <p:inputMask id="txtDUI" value="#{proveedorController.proveedor.dui}"  mask="99999999-9" required="true"/>
-                                                    <p:message for="txtDUI"/>
+                                                <p:outputLabel for="txtDUI" value="DUI"/>
+                                                <p:inputMask id="txtDUI" value="#{proveedorController.proveedor.dui}"  mask="99999999-9" required="true"/>
+                                                <p:message for="txtDUI"/>
 
-                                                    <p:outputLabel for="txtNIT" value="NIT"/>
-                                                    <p:inputMask id="txtNIT" value="#{proveedorController.proveedor.nit}"  mask="9999-999999-999-9" required="true"/>
-                                                    <p:message for="txtNIT"/>
+                                                <p:outputLabel for="txtNIT" value="NIT"/>
+                                                <p:inputMask id="txtNIT" value="#{proveedorController.proveedor.nit}"  mask="9999-999999-999-9" required="true"/>
+                                                <p:message for="txtNIT"/>
 
-                                                    <p:outputLabel for="txtDireccion" value="Dirección"/>
-                                                    <p:inputTextarea id="txtDireccion" value="#{proveedorController.proveedor.direccion}" required="true" />
-                                                    <p:message for="txtDireccion"/>
+                                                <p:outputLabel for="txtDireccion" value="Dirección"/>
+                                                <p:inputTextarea id="txtDireccion" value="#{proveedorController.proveedor.direccion}" required="true" />
+                                                <p:message for="txtDireccion"/>
 
-                                                    <p:outputLabel for="txtTelefono" value="Teléfono"/>
-                                                    <p:inputMask id="txtTelefono" value="#{proveedorController.proveedor.telefono}" required="true" mask="9999-9999"/>
-                                                    <p:message for="txtTelefono"/>
+                                                <p:outputLabel for="txtTelefono" value="Teléfono"/>
+                                                <p:inputMask id="txtTelefono" value="#{proveedorController.proveedor.telefono}" required="true" mask="9999-9999"/>
+                                                <p:message for="txtTelefono"/>
 
-                                                    <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
+                                                <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
 
-                                                                     actionListener="#{proveedorController.modificar()}"     
-                                                                     update=":frmMostrar,panelDatos, growl1" 
-                                                                     action="/catalogos/proveedor/proveedores.xhtml" 
-                                                                     oncomplete="PF('dlgmodificar').hide();">
-                                                    </p:commandButton>
-                                                    <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>
+                                                                 actionListener="#{proveedorController.modificar()}"     
+                                                                 update=":frmMostrar,panelDatos, growl1" 
+                                                                 action="/catalogos/proveedor/proveedores.xhtml" 
+                                                                 oncomplete="PF('dlgmodificar').hide();">
+                                                </p:commandButton>
+                                                <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>
 
-                                                </h:panelGrid>
-                                            </div>
-                                        </p:panel>
-                                        <br/>
-                                    </div>
-                                </p:fieldset>
-                            </h:form>
-                            <br/>
+                                            </h:panelGrid>
+                                        </div>
+                                    </p:panel>
+                                    <br/>
+                                </div>
+                            </p:fieldset>
+                        </h:form>
+                        <br/>
 
-                        </div>
-                    </p:dialog>
+                    </div>
+                </p:dialog>
             </ui:define>
 
         </ui:composition>
