@@ -38,7 +38,7 @@
                                                             <div class="form-group">
                                                                 <div class="col-md-3"></div>
                                                                 <div class="col-md-3" style="text-align: right;padding-top: 5px;">Registrar nuevo usuario</div>
-                                                                <div class="col-md-2" align="left" ><button type="button" class="form-control" data-toggle="modal" data-target="#myModal">Crear Usuario</button></div>
+                                                                <div class="col-md-2" align="left" ><button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">Crear Usuario</button></div>
                                                             </div>
                                                             <br/><br/>
                                                             <div class="col-md-12">
@@ -107,9 +107,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="text-align: center">Creación de nuevo usuario</h4>
+                                <h3 class="modal-title" style="text-align: center"><u>Creación de nuevo Usuario</u></h3>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="border-color: black">
                                 <div class="container">
                                     <h:form id="frmUsuariosModel">
                                         <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
@@ -122,8 +122,8 @@
                                                         <div class="form-group">
                                                             <div class="row">
 
-                                                                <div class="panel panel-primary" style="width: 70%;border-color: black">
-                                                                    <div class="panel-heading" style="border-color: black;">Datos Personales</div>
+                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;">
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos Personales</div>
                                                                     <div class="panel-body">
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
@@ -196,22 +196,33 @@
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <div class='input-group date' id='datetimepicker1'>
-                                                                                <h:inputText class="form-control" id="FNU" value="#{usuarioController.persona.fechaNacimiento}" />
+                                                                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+                                                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+                                                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
+
+                                                                            <div class='input-group date' name="datepicker" >
+                                                                                <h:inputText class="form-control" id="fecha"/>
                                                                                 <span class="input-group-addon">
-                                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                                    <span class="glyphicon glyphicon-calendar">
+                                                                                    </span>
                                                                                 </span>
                                                                             </div>
+
 
                                                                         </div>
 
                                                                         <div class="col-md-3">
                                                                         </div><!--aqui acaba FechaNac-->
-                                                                        <script type="text/javascript">
-                                                                            $(function () {
-                                                                                $('#datetimepicker1').datepicker();
-
-                                                                            });
+                                                                        <script>
+                                                                                            $(document).ready(function () {
+                                                                                                $('.input-group.date').datetimepicker({
+                                                                                                    locale: 'es'
+                                                                                                });
+                                                                                            });
                                                                         </script>
                                                                         <br/><br/>
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
@@ -245,7 +256,7 @@
                                                                 <!--Este el otro panel-->
 
                                                                 <div class="panel panel-primary" style="width: 70%;border-color: black">
-                                                                    <div class="panel-heading" style="border-color: black;">Datos para Cuentas de Usuario</div>
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos para Cuentas de Usuario</div>
                                                                     <div class="panel-body">
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Tipo de Cuenta-->
@@ -417,7 +428,7 @@
                         </p:wizard>
                     </h:form>
                 </p:dialog>
-                
+
 
             </ui:define>
 
