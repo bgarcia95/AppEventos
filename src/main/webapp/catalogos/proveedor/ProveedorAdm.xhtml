@@ -2,11 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <head>
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    </head>
     <body>
 
         <ui:composition template="./../../plantillas/mpAdmin.xhtml">
@@ -20,13 +19,6 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="panel panel-primary" style="border-color: black">
                                 <div class="panel-body" >
-                                    <!--                                    <div class="row" align="center" >
-                                                                            <div class="form-group">
-                                                                                <h2 style="">Proveedores</h2>  
-                                                                            </div>
-                                                                        </div>-->
-
-
                                     <div class="row">
                                         <div class="col-lg-1"></div>      
                                         <div class="col-lg-10" >
@@ -37,122 +29,279 @@
                                                 <!--<div class="panel panel-primary" style="border-color: black;"/>Separator parte de arriba-->
 
                                                 <div class="row">
-                                                    <h:form id="frmProveedores">
-                                                        <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
 
-                                                        <div class="panel panel-primary" style="border-color: black">
-                                                            <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Registro de Proveedores</h4></div>
-                                                            <div class="panel-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4"></div> 
-                                                                    <div class="col-md-4" style="text-align: center">
-                                                                        <h4><u>Datos del proveedor</u></h4>
+
+
+                                                    <div class="panel panel-primary" style="border-color: black">
+                                                        <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Gestión de Proveedores</h4></div>
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+
+                                                                <div class="col-md-4"></div>
+                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">Ingresar Proveedor</button></div>
+                                                            </div>
+                                                            <br/><br/>
+                                                            <div class="col-md-12">
+                                                                <div class="panel panel-primary" style="border-color: black">
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Productos Registrados</h4></div>
+                                                                    <div class="panel-body">
+                                                                        <h:form id="frmMostrar">
+                                                                            <p:dataTable var="proveedor" value="#{proveedorController.proveedores}"
+                                                                                         emptyMessage="No hay usuarios en la base de datos"
+                                                                                         paginator="true" rows="5" paginatorPosition="bottom"
+                                                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                                                                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                                         rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" >
+
+                                                                                <f:facet name="header" >
+                                                                                    <p:outputPanel style="height: available">
+                                                                                        <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
+                                                                                        <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
+                                                                                        
+                                                                                    </p:outputPanel>
+                                                                                    <p:separator/>
+                                                                                    <BR/>
+
+                                                                                </f:facet>
+
+
+
+                                                                                <p:column headerText="Proveedor"   style="text-align: center">
+                                                                                    <h:outputText value="#{proveedor.proveedor}"  />
+                                                                                </p:column>
+                                                                                <p:column headerText="Propietario"  style="text-align: center">
+                                                                                    <h:outputText value="#{proveedor.propietario}"/>
+                                                                                </p:column>
+                                                                                <p:column headerText="NIT"  style="text-align: center">
+                                                                                    <h:outputText value="#{proveedor.nit}"/>
+                                                                                </p:column>
+                                                                                <p:column headerText="DUI"   style="text-align: center">
+                                                                                    <h:outputText value="#{proveedor.dui}"/>
+                                                                                </p:column>
+
+                                                                                <p:column headerText="Direccion"  style="text-align: center">
+                                                                                    <h:outputText value="#{proveedor.direccion}"/>
+                                                                                </p:column>
+
+                                                                                <p:column headerText="MODIFICAR PROVEEDOR" style="text-align: center;">
+                                                                                    <p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgmodificar').show();" 
+                                                                                                     update=":frmModificar" > 
+                                                                                        <f:setPropertyActionListener target="#{proveedorController.proveedor}" value="#{proveedor}"/>
+                                                                                        <p:effect type="bounce" event="click" />
+
+                                                                                    </p:commandButton>
+                                                                                </p:column>
+
+
+                                                                            </p:dataTable>
+                                                                        </h:form>
                                                                     </div>
                                                                 </div>
-                                                                <br/>
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                    Nombre del Proveedor:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="nombreP" class="form-control" value="#{proveedorController.proveedor.proveedor}" style=""/> 
-
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                </div><!--Aqui acaba Nombres-->
-                                                                <br/><br/>
-
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
-                                                                    Nombre del Propietario:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="nombreProp" class="form-control" value="#{proveedorController.proveedor.propietario}"/>
-
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                </div><!--Aqui acaba Apellidos-->
-
-                                                                <br/><br/>
-
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px"><!--Dirección-->
-                                                                    DUI:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="DUI" value="#{proveedorController.proveedor.dui}" class="form-control"/>
-
-                                                                </div>
-
-                                                                <div class="col-md-2">
-                                                                </div>      
-
-                                                                <div class="col-md-5">
-                                                                </div>
-                                                                <br/><br/>
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                    NIT:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="NITP" class="form-control" value="#{proveedorController.proveedor.nit}" style=""/> 
-
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                </div><!--Aqui acaba NIT-->
-                                                                <br/><br/>
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                    Dirección:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="DireccionP" class="form-control" value="#{proveedorController.proveedor.direccion}" style=""/> 
-
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                </div><!--Aqui acaba Dirección-->
-                                                                <br/><br/>
-                                                                <div class="col-md-3 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                    Teléfono:
-                                                                </div>
-
-                                                                <div class="col-md-7 col-xs-12">
-                                                                    <h:inputText id="telefonoP" class="form-control" value="#{proveedorController.proveedor.telefono}" style=""/> 
-
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                </div><!--Aqui acaba Teléfono-->
-                                                                <br/><br/>
-                                                                <div class ="col-md-5" style=""></div>
-                                                                <div class="col-md-2" align="center" >
-                                                                    <h:commandButton id="btnRegistrar"  actionListener="#{proveedorController.registrar()}" action="ProveedorAdm.xhtml" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
-
-                                                                </div>
-                                                                <div class="col-md-5"></div>
-
                                                             </div>
                                                         </div>
 
-                                                    </h:form>
+                                                    </div>
                                                 </div>
-
-
-
-                                                <!--                                                <div class="panel panel-primary" style="border-color: black;"/>Separator parte de abajo-->
-
-
-
                                             </div>
+                                            <div class="col-md-2"></div>
                                         </div>
-                                        <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
+                
+ 
+                
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title" style="text-align: center"><u>Registro de nuevo proveedor</u></h3>
+                            </div>
+                            <div class="modal-body" style="border-color: black">
+                                <div class="container">
+                                    <h:form id="frmProveedoresModel">
+                                        <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-lg-1"></div>
+                                                    <div class="col-lg-10">
+                                                        <div class="form-group">
+                                                            <div class="row">
+
+                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;">
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos del proveedor</div>
+                                                                    <div class="panel-body">
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
+                                                                            Nombre del proveedor:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="nombreProv" class="form-control" value="#{usuarioController.persona.nombres}" style=""/> 
+
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                        </div><!--Aqui acaba Nombres-->
+                                                                        <br/><br/>
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
+                                                                            Nombre del propietario:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="NombreProp" class="form-control" value="#{usuarioController.persona.apellidos}" style=""/> 
+
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                        </div><!--Aqui acaba Apellidos-->
+                                                                        <br/><br/>
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--DUI-->
+                                                                            DUI:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="DUIU" value="#{usuarioController.persona.dui}" class="form-control"/>
+
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                        </div>      
+
+                                                                        <br/><br/>
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--NIT-->
+                                                                            NIT:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="NITU" value="#{usuarioController.persona.nit}" class="form-control"/>
+
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                        </div><!--aqui acaba NIT-->
+                                                                        <br/><br/>
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
+                                                                            Dirección:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="DirProv" value="#{usuarioController.persona.direccion}" class="form-control"/>
+
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                        </div><!--aqui acaba Direccion-->
+                                                                        <br/><br/>
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Teléfono-->
+                                                                            Teléfono:
+                                                                        </div>
+
+                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <h:inputText id="TelProv" value="#{usuarioController.persona.telefono}" class="form-control"/>
+
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                        </div><!--aqui acaba Teléfono-->
+                                                                        <br/><br/>
+
+
+                                                                        <div class ="col-md-5" style=""></div>
+                                                                        <div class="col-md-3" align="center" >
+                                                                            <h:commandButton id="btnRegistrarP"  actionListener="#{productoController.registrar()}" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
+
+                                                                        </div>
+                                                                        <div class="col-md-4"></div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                            <div class="modal-footer" align="center">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p:dialog id="dlg" header="MODIFICAR PROVEEDOR" showEffect="modal" hideEffect="fade" widgetVar="dlgmodificar" modal="true">
+
+                        <div>
+                            <p:growl showDetail="No se realizo el registro"  showSummary="true" id="growl1"  />
+                            <p:messages id="mensaje" />
+                            <h:form id="frmModificar">
+                                <p:fieldset  legend="REGISTRO DE PROVEEDORES" style="align-content: center;align-self: center" >
+                                    <div>
+                                        <p:panel id="panelDatos" header="DATOS DEL PROVEEDOR" toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelDt" style="align-content: center;align-items: center;width: content-box">
+                                            <div align="center"  style="padding: auto; width: 300"  >
+                                                <h:panelGrid cellpadding="15" columns="3" id="pgDatos"   style="align-items: center; align-content: center; "  columnClasses="centered" >
+
+                                                    <p:outputLabel for="txtProveedor" value="Nombre de Proveedor" />
+                                                    <p:inputText id="txtProveedor" value="#{proveedorController.proveedor.proveedor}" required="true"/>
+                                                    <p:message for="txtProveedor"/>
+
+                                                    <p:outputLabel for="txtPropietario" value="Nombre de Propietario"/>
+                                                    <p:inputText id="txtPropietario" value="#{proveedorController.proveedor.propietario}" required="true"/>
+                                                    <p:message for="txtPropietario"/>
+
+
+                                                    <p:outputLabel for="txtDUI" value="DUI"/>
+                                                    <p:inputMask id="txtDUI" value="#{proveedorController.proveedor.dui}"  mask="99999999-9" required="true"/>
+                                                    <p:message for="txtDUI"/>
+
+                                                    <p:outputLabel for="txtNIT" value="NIT"/>
+                                                    <p:inputMask id="txtNIT" value="#{proveedorController.proveedor.nit}"  mask="9999-999999-999-9" required="true"/>
+                                                    <p:message for="txtNIT"/>
+
+                                                    <p:outputLabel for="txtDireccion" value="Dirección"/>
+                                                    <p:inputTextarea id="txtDireccion" value="#{proveedorController.proveedor.direccion}" required="true" />
+                                                    <p:message for="txtDireccion"/>
+
+                                                    <p:outputLabel for="txtTelefono" value="Teléfono"/>
+                                                    <p:inputMask id="txtTelefono" value="#{proveedorController.proveedor.telefono}" required="true" mask="9999-9999"/>
+                                                    <p:message for="txtTelefono"/>
+
+                                                    <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
+
+                                                                     actionListener="#{proveedorController.modificar()}"     
+                                                                     update=":frmMostrar,panelDatos, growl1" 
+                                                                     action="/catalogos/proveedor/proveedores.xhtml" 
+                                                                     oncomplete="PF('dlgmodificar').hide();">
+                                                    </p:commandButton>
+                                                    <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>
+
+                                                </h:panelGrid>
+                                            </div>
+                                        </p:panel>
+                                        <br/>
+                                    </div>
+                                </p:fieldset>
+                            </h:form>
+                            <br/>
+
+                        </div>
+                    </p:dialog>
             </ui:define>
 
         </ui:composition>
