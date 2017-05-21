@@ -13,7 +13,7 @@
 
             <ui:define name="content">
                 <!--Aca ira todo el contenido-->
-                <div class="container">
+                <div class="container" id="todo">
 
                     <div class="row">
 
@@ -33,7 +33,7 @@
 
 
 
-                                                    <div class="panel panel-primary" style="border-color: black" id="panelUsuarios">
+                                                    <div class="panel panel-primary" style="border-color: black">
                                                         <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Gestión de Usuarios</h4></div>
                                                         <div class="panel-body">
                                                             <div class="form-group">
@@ -41,7 +41,7 @@
                                                                 <div class="col-md-4"></div>
                                                                 <div class="col-md-4">
 
-                                                                    <button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">
+                                                                    <button type="button" class="form-control" data-toggle="modal" data-target="#modalUsuarios" style="background-color:#D2D4D6;color: black;border-color: black">
                                                                         <p:ajax event="click" listener="#{usuarioController.limpiarModal()}"/>
                                                                         Crear Usuario
                                                                     </button>
@@ -55,57 +55,61 @@
 
 
                                                                         <h:form id="frmMostrar">
-                                                                            <b:dataTable value="#{usuarioController.usuarios}" var="usu">
+                                                                            <b:dataTable value="#{usuarioController.usuarios}" var="usu" responsive="true" widgetVar="dtU">
                                                                                 <b:dataTableColumn label="Usuario" value="#{usu.usuario}" />
                                                                                 <b:dataTableColumn label="Tipo de Usuario" value="#{usu.tipo_usuario}" />
                                                                                 <b:dataTableColumn label="Estado" value="#{usu.estado}" />
-                                                                                
-                                                                            </b:dataTable>
-                                                                        </h:form>
-<!--                                                                        <h:form id="frmMostrar">
-                                                                            <p:dataTable var="usuario" value="#{usuarioController.usuarios}"
-                                                                                         emptyMessage="No hay usuarios en la base de datos"
-                                                                                         paginator="true" rows="5" paginatorPosition="bottom"
-                                                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
-                                                                                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                                                         rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" >
-
-                                                                                <f:facet name="header">
-                                                                                    <p:outputPanel>
-                                                                                        <h:outputText value="Buscar en todos los campos" style="padding-right: 10px"/>
-                                                                                        <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero" style="width: 350px"/>
-                                                                                    </p:outputPanel>
-                                                                                </f:facet>
-
-
-
-                                                                                <p:column headerText="Usuario" style="text-align: center"  >
-                                                                                    <h:outputText value="#{usuario.usuario}"  />
-                                                                                </p:column>
-                                                                                <p:column headerText="Tipo de Usuario" style="text-align: center"  >
-                                                                                    <h:outputText value="#{usuario.tipo_usuario}"/>
-                                                                                </p:column>
-                                                                                <p:column headerText="Estado" style="text-align: center" >
-                                                                                    <h:outputText value="#{usuario.estado}"/>
-                                                                                </p:column>
-
-                                                                                <p:column headerText="Modificar" style="text-align: center;">
+                                                                                <b:dataTableColumn label="Modificar" style="text-align: center;">
 
                                                                                     <p:commandButton icon="ui-icon-pencil"
                                                                                                      oncomplete="PF('dlgModificar').show();" update="frmModificar" >
                                                                                         <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
 
                                                                                     </p:commandButton>
-                                                                                </p:column>
-                                                                            </p:dataTable>
-                                                                        </h:form>-->
+                                                                                </b:dataTableColumn>
+
+                                                                            </b:dataTable>
+                                                                        </h:form>
+                                                                        <!--                                                                        <h:form id="frmMostrar">
+                                                                                                                                                    <p:dataTable var="usuario" value="#{usuarioController.usuarios}"
+                                                                                                                                                                 emptyMessage="No hay usuarios en la base de datos"
+                                                                                                                                                                 paginator="true" rows="5" paginatorPosition="bottom"
+                                                                                                                                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                                                                                                                                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                                                                                                                 rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" >
+                                                                        
+                                                                                                                                                        <f:facet name="header">
+                                                                                                                                                            <p:outputPanel>
+                                                                                                                                                                <h:outputText value="Buscar en todos los campos" style="padding-right: 10px"/>
+                                                                                                                                                                <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero" style="width: 350px"/>
+                                                                                                                                                            </p:outputPanel>
+                                                                                                                                                        </f:facet>
+                                                                        
+                                                                        
+                                                                        
+                                                                                                                                                        <p:column headerText="Usuario" style="text-align: center"  >
+                                                                                                                                                            <h:outputText value="#{usuario.usuario}"  />
+                                                                                                                                                        </p:column>
+                                                                                                                                                        <p:column headerText="Tipo de Usuario" style="text-align: center"  >
+                                                                                                                                                            <h:outputText value="#{usuario.tipo_usuario}"/>
+                                                                                                                                                        </p:column>
+                                                                                                                                                        <p:column headerText="Estado" style="text-align: center" >
+                                                                                                                                                            <h:outputText value="#{usuario.estado}"/>
+                                                                                                                                                        </p:column>
+                                                                        
+                                                                                                                                                        <p:column headerText="Modificar" style="text-align: center;">
+                                                                        
+                                                                                                                                                            <p:commandButton icon="ui-icon-pencil"
+                                                                                                                                                                             oncomplete="PF('dlgModificar').show();" update="frmModificar" >
+                                                                                                                                                                <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
+                                                                        
+                                                                                                                                                            </p:commandButton>
+                                                                                                                                                        </p:column>
+                                                                                                                                                    </p:dataTable>
+                                                                                                                                                </h:form>-->
 
 
-                                                                        <script>
-                                                                            $(document).ready(function () {
-                                                                                $('#example').DataTable();
-                                                                            });
-                                                                        </script>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -126,17 +130,18 @@
                 <!-- Modal -->
                 <h:form id="frmUsuariosModal">
                     <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="modalUsuarios" class="modal fade" role="dialog">
                         <div class="modal-dialog modal-lg">
 
                             <!-- Modal content-->
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header" style="border-color: black;background-color: #D2D4D6;">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title" style="text-align: center"><u>Creación de nuevo Usuario</u></h3>
+                                    <h3 class="modal-title" style="text-align: center">Creación de Nuevo Usuario</h3>
                                 </div>
                                 <div class="modal-body" style="border-color: black">
                                     <div class="container">
+                                        <br/>
 
 
                                         <div class="row">
@@ -147,7 +152,7 @@
                                                         <div class="form-group">
                                                             <div class="row">
 
-                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;">
+                                                                <div class="panel panel-primary" style="width: 68%;border-color: black;">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos Personales</div>
                                                                     <div class="panel-body">
 
@@ -159,9 +164,7 @@
                                                                             <h:inputText id="nombresU" class="form-control" value="#{usuarioController.persona.nombres}" style=""/> 
 
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Nombres-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>      
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
                                                                             Apellidos:
@@ -171,27 +174,26 @@
                                                                             <h:inputText id="apellidosU" class="form-control" value="#{usuarioController.persona.apellidos}" style=""/> 
 
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Apellidos-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>    
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Sexo-->
-                                                                            Sexo:
-                                                                        </div>
+                                                                        <b:formGroup>      
+                                                                            <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;">
+                                                                                Sexo:
+                                                                            </div>
 
-                                                                        <div class="col-md-5 col-xs-12">
+                                                                            <div class="col-md-5 col-xs-12">
 
-                                                                            <select class="selectpicker form-control" >
-                                                                                <option>M</option>
-                                                                                <option>F</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Sexo-->
-                                                                        <br/><br/>
+                                                                                <b:selectOneMenu value="#{usuarioController.persona.sexo}" >
+                                                                                    <f:selectItem itemLabel="--"/>
+                                                                                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                                                                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                                                                </b:selectOneMenu>
+                                                                            </div>
+                                                                            <br/><br/>
+                                                                        </b:formGroup> 
 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--DUI-->
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px"><!--DUI-->
                                                                             DUI:
                                                                         </div>
 
@@ -200,10 +202,8 @@
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div>      
+                                                                        <br/><br/>        
 
-                                                                        <br/><br/>
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--NIT-->
                                                                             NIT:
                                                                         </div>
@@ -213,43 +213,18 @@
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba NIT-->
-                                                                        <br/><br/>
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--FechaNac-->
-                                                                            Fecha de Nac.:
+                                                                        <br/><br/>    
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
+                                                                            Fecha Nac.:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-                                                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-
-                                                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
-                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
-
-                                                                            <div class='input-group date' name="datepicker" >
-                                                                                <h:inputText class="form-control" id="fecha"/>
-                                                                                <span class="input-group-addon">
-                                                                                    <span class="glyphicon glyphicon-calendar">
-                                                                                    </span>
-                                                                                </span>
-                                                                            </div>
-
+                                                                            <h:inputText id="fechaNac" value="#{usuarioController.persona.dui}" class="form-control"/>
 
                                                                         </div>
+                                                                        <br/><br/>  
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba FechaNac-->
-                                                                        <script>
-                                                                            $(document).ready(function () {
-                                                                                $('.input-group.date').datetimepicker({
-                                                                                    locale: 'es'
-                                                                                });
-                                                                            });
-                                                                        </script>
-                                                                        <br/><br/>
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
                                                                             Dirección:
                                                                         </div>
@@ -259,9 +234,8 @@
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba Direccion-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>    
+
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Teléfono-->
                                                                             Teléfono:
                                                                         </div>
@@ -271,33 +245,32 @@
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba Teléfono-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>   
+
 
                                                                     </div>
-                                                                </div>
+                                                                </div><!--Aqui termina el primer panel-->
 
                                                                 <!--Este el otro panel-->
 
-                                                                <div class="panel panel-primary" style="width: 70%;border-color: black">
+                                                                <div class="panel panel-primary" style="width: 68%;border-color: black">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos para Cuentas de Usuario</div>
                                                                     <div class="panel-body">
+                                                                        <b:formGroup>
+                                                                            <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Tipo de Cuenta-->
+                                                                                Tipo de cuenta:
+                                                                            </div>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Tipo de Cuenta-->
-                                                                            Tipo de cuenta:
-                                                                        </div>
+                                                                            <div class="col-md-5 col-xs-12">
+                                                                                <b:selectOneMenu class="selectpicker form-control" value="#{usuarioController.usuario.tipo_usuario}">
+                                                                                    <f:selectItem itemLabel="Administrador" itemValue="A"/>
+                                                                                    <f:selectItem itemLabel="Operario" itemValue="O"/>
+                                                                                </b:selectOneMenu>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <select class="selectpicker form-control">
-                                                                                <option>Administrador</option>
-                                                                                <option>Operario</option>
-                                                                            </select>
+                                                                            </div>
+                                                                            <br/><br/>
+                                                                        </b:formGroup>
 
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Tipo de Cuenta-->
-                                                                        <br/><br/>
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Usuario-->
                                                                             Usuario:
@@ -305,11 +278,10 @@
 
                                                                         <div class="col-md-5 col-xs-12">
                                                                             <h:inputText id="UsuarioU" class="form-control" value="#{usuarioController.usuario.usuario}" style=""/> 
-
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Usuario-->
                                                                         <br/><br/>
+
+
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Contraseña-->
                                                                             Contraseña:
@@ -319,34 +291,29 @@
                                                                             <h:inputText id="ContraU" class="form-control" value="#{usuarioController.usuario.clave}" style=""/> 
 
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Contraseña-->
                                                                         <br/><br/>
-
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Repetir Contra-->
                                                                             Repetir Contraseña:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="RContraU" class="form-control"/>
-
+                                                                            <h:inputText id="RepetirContraU" class="form-control"/> 
                                                                         </div>
-
-                                                                        <div class="col-md-3">
-                                                                        </div>      
-
-
-                                                                        <br/><br/>
-                                                                        <div class ="col-md-5" style=""></div>
-                                                                        <div class="col-md-2" align="center" >
-                                                                            <b:commandButton id="btnRegistrarU" actionListener="#{usuarioController.registrar()}" update=":frmMostrar" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
-
-                                                                        </div>
-                                                                        <div class="col-md-5"></div>
                                                                     </div>
                                                                 </div>
+
+
                                                             </div>
+                                                            <div class ="col-md-3" style=""></div>
+                                                            <div class="col-md-3" >
+                                                                <b:commandButton id="btnRegistrarU" onclick="dtU.DataTable().destroy();" update=":frmMostrar" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
+                                                                                 style="background-color:#D2D4D6;color: black;border-color: black;width:85%">
+
+                                                                </b:commandButton>
+
+                                                            </div>
+                                                            <div class="col-md-6"></div>
                                                         </div>
                                                     </div>
                                                 </div>

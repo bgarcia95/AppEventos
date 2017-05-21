@@ -32,6 +32,8 @@ public class UsuarioController implements Serializable {
 
     private List<Persona> personas;
     private List<Usuario> usuarios;
+    
+    String redireccion=null;
 
     @PostConstruct
     public void init() {
@@ -46,7 +48,8 @@ public class UsuarioController implements Serializable {
         try {
             this.usuario.setId_usuario(persona);
             usuarioEJB.create(usuario);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Usuario registrado correctamente"));
+            redireccion="/TeneriaOriginal/administracion/GestionUsuarioAdm.xhtml";
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
@@ -57,7 +60,7 @@ public class UsuarioController implements Serializable {
         try {
             this.usuario.setId_usuario(persona);
             usuarioEJB.edit(usuario);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Docente registrado con éxito"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Usuario modificado con éxito"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
