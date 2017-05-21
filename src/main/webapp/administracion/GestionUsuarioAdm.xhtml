@@ -184,7 +184,7 @@
                                                                             <div class="col-md-5 col-xs-12">
 
                                                                                 <b:selectOneMenu value="#{usuarioController.persona.sexo}" >
-                                                                                    <f:selectItem itemLabel="--"/>
+                                                                                    
                                                                                     <f:selectItem itemLabel="Masculino" itemValue="M"/>
                                                                                     <f:selectItem itemLabel="Femenino" itemValue="F"/>
                                                                                 </b:selectOneMenu>
@@ -307,8 +307,9 @@
                                                             </div>
                                                             <div class ="col-md-3" style=""></div>
                                                             <div class="col-md-3" >
-                                                                <b:commandButton id="btnRegistrarU" action="GestionUsuarioAdm.xhtml?faces-redirect=true" update=":frmMostrar" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
-                                                                                 style="background-color:#D2D4D6;color: black;border-color: black;width:85%">
+                                                                <b:commandButton id="btnRegistrarU" action="GestionUsuarioAdm.xhtml" update=":frmMostrar,mensaje" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
+                                                                                 style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
+                                                                                 oncomplete="PF('modalUsuarios').hide();">
 
                                                                 </b:commandButton>
 
