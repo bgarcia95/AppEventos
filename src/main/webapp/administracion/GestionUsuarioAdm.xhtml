@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <body>
 
@@ -32,20 +33,36 @@
 
 
 
-                                                    <div class="panel panel-primary" style="border-color: black">
+                                                    <div class="panel panel-primary" style="border-color: black" id="panelUsuarios">
                                                         <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Gestión de Usuarios</h4></div>
                                                         <div class="panel-body">
                                                             <div class="form-group">
-                                                                
+
                                                                 <div class="col-md-4"></div>
-                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">Crear Usuario</button></div>
+                                                                <div class="col-md-4">
+
+                                                                    <button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">
+                                                                        <p:ajax event="click" listener="#{usuarioController.limpiarModal()}"/>
+                                                                        Crear Usuario
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                             <br/><br/>
                                                             <div class="col-md-12">
-                                                                <div class="panel panel-primary" style="border-color: black">
+                                                                <div class="panel panel-primary" style="border-color: black" id="panelDT">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Usuarios Registrados</h4></div>
                                                                     <div class="panel-body">
+
+
                                                                         <h:form id="frmMostrar">
+                                                                            <b:dataTable value="#{usuarioController.usuarios}" var="usu">
+                                                                                <b:dataTableColumn label="Usuario" value="#{usu.usuario}" />
+                                                                                <b:dataTableColumn label="Tipo de Usuario" value="#{usu.tipo_usuario}" />
+                                                                                <b:dataTableColumn label="Estado" value="#{usu.estado}" />
+                                                                                
+                                                                            </b:dataTable>
+                                                                        </h:form>
+<!--                                                                        <h:form id="frmMostrar">
                                                                             <p:dataTable var="usuario" value="#{usuarioController.usuarios}"
                                                                                          emptyMessage="No hay usuarios en la base de datos"
                                                                                          paginator="true" rows="5" paginatorPosition="bottom"
@@ -77,11 +94,18 @@
                                                                                     <p:commandButton icon="ui-icon-pencil"
                                                                                                      oncomplete="PF('dlgModificar').show();" update="frmModificar" >
                                                                                         <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
-                                                                                        <p:effect type="pulsate" event="click" />
+
                                                                                     </p:commandButton>
                                                                                 </p:column>
                                                                             </p:dataTable>
-                                                                        </h:form>
+                                                                        </h:form>-->
+
+
+                                                                        <script>
+                                                                            $(document).ready(function () {
+                                                                                $('#example').DataTable();
+                                                                            });
+                                                                        </script>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -100,19 +124,20 @@
                 </div>
 
                 <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog modal-lg">
+                <h:form id="frmUsuariosModal">
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title" style="text-align: center"><u>Creación de nuevo Usuario</u></h3>
-                            </div>
-                            <div class="modal-body" style="border-color: black">
-                                <div class="container">
-                                    <h:form id="frmUsuariosModel">
-                                        <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title" style="text-align: center"><u>Creación de nuevo Usuario</u></h3>
+                                </div>
+                                <div class="modal-body" style="border-color: black">
+                                    <div class="container">
+
 
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -218,11 +243,11 @@
                                                                         <div class="col-md-3">
                                                                         </div><!--aqui acaba FechaNac-->
                                                                         <script>
-                                                                                            $(document).ready(function () {
-                                                                                                $('.input-group.date').datetimepicker({
-                                                                                                    locale: 'es'
-                                                                                                });
-                                                                                            });
+                                                                            $(document).ready(function () {
+                                                                                $('.input-group.date').datetimepicker({
+                                                                                    locale: 'es'
+                                                                                });
+                                                                            });
                                                                         </script>
                                                                         <br/><br/>
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
@@ -315,30 +340,28 @@
                                                                         <br/><br/>
                                                                         <div class ="col-md-5" style=""></div>
                                                                         <div class="col-md-2" align="center" >
-                                                                            <h:commandButton id="btnRegistrarU"  actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
+                                                                            <b:commandButton id="btnRegistrarU" actionListener="#{usuarioController.registrar()}" update=":frmMostrar" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
 
                                                                         </div>
                                                                         <div class="col-md-5"></div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
-                                    </h:form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer" align="center">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                <div class="modal-footer" align="center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </h:form>
+
 
                 <p:dialog id="dlgModificar" header="Modificar Usuario" showEffect="fade" hideEffect="fade"
                           widgetVar="dlgModificar" modal="true" draggable="false" resizable="false" minWidth="400"  >
@@ -418,7 +441,7 @@
                                         <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
 
                                                          actionListener="#{usuarioController.modificar()}"     
-                                                         update=":frmMostrar,panelDatos, growl1" 
+                                                         update=":frmMostrar,pgDatos,growl" 
                                                          oncomplete="PF('dlgmodificar').hide();">
                                         </p:commandButton>
                                         <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>

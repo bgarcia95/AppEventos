@@ -96,4 +96,9 @@ public class UsuarioController implements Serializable {
         this.persona = persona;
     }
 
+    //Metodo para limpiar Factura
+      public void limpiarModal() {
+            this.persona = new Persona();
+            this.usuario = new Usuario();
+      }
 }
