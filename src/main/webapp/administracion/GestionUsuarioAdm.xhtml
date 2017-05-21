@@ -262,7 +262,7 @@
                                                                             </div>
 
                                                                             <div class="col-md-5 col-xs-12">
-                                                                                <b:selectOneMenu class="selectpicker form-control" value="#{usuarioController.usuario.tipo_usuario}">
+                                                                                <b:selectOneMenu value="#{usuarioController.usuario.tipo_usuario}">
                                                                                     <f:selectItem itemLabel="Administrador" itemValue="A"/>
                                                                                     <f:selectItem itemLabel="Operario" itemValue="O"/>
                                                                                 </b:selectOneMenu>
@@ -307,7 +307,7 @@
                                                             </div>
                                                             <div class ="col-md-3" style=""></div>
                                                             <div class="col-md-3" >
-                                                                <b:commandButton id="btnRegistrarU" onclick="dtU.DataTable().destroy();" update=":frmMostrar" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
+                                                                <b:commandButton id="btnRegistrarU" action="GestionUsuarioAdm.xhtml?faces-redirect=true" update=":frmMostrar" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
                                                                                  style="background-color:#D2D4D6;color: black;border-color: black;width:85%">
 
                                                                 </b:commandButton>
