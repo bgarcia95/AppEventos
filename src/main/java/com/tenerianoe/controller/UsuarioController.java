@@ -32,8 +32,8 @@ public class UsuarioController implements Serializable {
 
     private List<Persona> personas;
     private List<Usuario> usuarios;
-    
-    
+
+    private String redireccion = null;
 
     @PostConstruct
     public void init() {
@@ -49,7 +49,9 @@ public class UsuarioController implements Serializable {
             this.usuario.setId_usuario(persona);
             usuarioEJB.create(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Usuario registrado correctamente"));
- 
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
         }
@@ -60,6 +62,8 @@ public class UsuarioController implements Serializable {
             this.usuario.setId_usuario(persona);
             usuarioEJB.edit(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Usuario modificado con éxito"));
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
@@ -99,8 +103,8 @@ public class UsuarioController implements Serializable {
     }
 
     //Metodo para limpiar Factura
-      public void limpiarModal() {
-            this.persona = new Persona();
-            this.usuario = new Usuario();
-      }
+    public void limpiarModal() {
+        this.persona = new Persona();
+        this.usuario = new Usuario();
+    }
 }

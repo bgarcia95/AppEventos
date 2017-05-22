@@ -5,33 +5,79 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Teneria Inicion de Sesion 
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width,initial scale=1"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+
+        <title>Teneria Inicio de Sesion 
         </title>
+
     </h:head>
-    <h:body>
-        <p:graphicImage value="/recursos/imagenes/fondoLogin.jpg"/>
+    <h:body style="background-image: url(recursos/imagenes/fondo5.jpg);background-repeat: no-repeat;background-size: 100%;">
+
         <h:form id="frmLogin">
             <p:growl id="growl" sticky="true" showDetail="true" life="300"/>
-            <p:dialog  resizable="true"  responsive="true" visible="true" header="Iniciar Sesion" widgetVar="dlg" modal="true" >
-                <h:panelGrid   columns="2" cellpadding="5"   style="background-color: aliceblue; background: floralwhite; "   >
-                   
-                    <h:outputLabel for="username" value="Usuario:"/>
-                    <p:inputText id="user" value="#{loginController.usuario.usuario}" required="true" label="Usuario"/>
 
-                    <h:outputLabel for="password" value="Password"/>
-                    <p:password id="password" value="#{loginController.usuario.clave}" required="true" label="Password"/>
-              
-
-                    <f:facet name="footer">
-                        <p:commandButton value="Iniciar Sesion" update="growl"  action="#{loginController.iniciarSesion()}"
-                                         oncomplete="Informacion incorrecta" />
-                    </f:facet>  
+            <div class="container" style='padding-top: 150px'>
 
 
-                </h:panelGrid>
-            </p:dialog>  
+                <!--aca ira todo-->
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-primary" style="border-color: black">
+                        <div class="panel-heading" style="text-align: center; background-color: black; border-color: black;">Login</div>
+                        <div class="panel-body">
+                            <br/>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label style="text-align: right; padding-left: 65px; padding-top: 5px;">Usuario:</label>
+                                    </div>
+                                    <div class="col-lg-9" style="padding-right: 50px">
+                                        <h:inputText value="#{loginController.usuario.usuario}" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                <div class="row">
+
+                                    <div class="col-lg-3">
+                                        <label style="text-align: right; padding-left: 40px; padding-top: 5px;">Contraseña:</label>
+                                    </div>
+                                    <div class="col-lg-9" style="padding-right: 50px">
+                                        <h:inputText value="#{loginController.usuario.clave}" class="form-control"/>
+                                    </div>
+                                    <br/><br/><br/>
+
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-7">
+                                        <h:commandButton class="btn" style="border-color: black;width: 60%" action="#{loginController.iniciarSesion()}" value="Iniciar Sesion"/>
+                                    </div>
+                                </div>
+                            
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" style="text-align: center;">
+                        <h5><b>Copyright © 2017</b></h5>
+                        <br />
+                    </div>
+                </div>
+            </div>
         </h:form>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </h:body>
 </html>
-
