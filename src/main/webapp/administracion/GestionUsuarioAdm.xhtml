@@ -61,15 +61,16 @@
                                                                                 <b:dataTableColumn label="Estado" value="#{usu.estado}" style="text-align: center"/>
                                                                                 <b:dataTableColumn label="Modificar" style="text-align: center;">
 
-                                                                                    <!--                                                                                    <p:commandButton icon="ui-icon-pencil"
-                                                                                                                                                                                         oncomplete="PF('dlgModificar').show();" update="frmModificar" >
-                                                                                                                                                                            <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
-                                                                                    
-                                                                                                                                                                        </p:commandButton>-->
+                                                                                    <p:commandButton icon="ui-icon-pencil"
+                                                                                                     oncomplete="PF('dlgModificar').show();">
+                                                                                        <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
 
-                                                                                    <button type="button" class="form-control" data-toggle="modal" data-target="#modificarUModal" style="background-color:#D2D4D6;color: black;border-color: black"> 
-                                                                                        Modificar Usuario
-                                                                                    </button>
+                                                                                    </p:commandButton>
+
+                                                                                    <!--                                                                                    <button type="button" class="form-control" data-toggle="modal" data-target="#modificarUModal" style="background-color:#D2D4D6;color: black;border-color: black"> 
+                                                                                                                                                                            Modificar Usuario
+                                                                                                                                                                        </button>-->
+
 
                                                                                 </b:dataTableColumn>
 
@@ -500,6 +501,94 @@
 
 
 
+                <p:dialog id="dlgModificar" header="Modificar Usuario" showEffect="fade" hideEffect="fade"
+                          widgetVar="dlgModificar" closable="true" draggable="false" resizable="false" minWidth="400">
+                        <h:form id="frmModificar">
+                            <p:wizard nextLabel="Siguiente" flowListener="#{usuarioController.modificar()}">
+                                <p:tab title="Datos Personales" disabled="false">
+                                    <p:panel header="Datos de Personales" toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelDt" style="align-content: center;align-items: center;width: content-box">
+                                        <h:panelGrid columns="3" id="pgDatos"  >
+
+                                            <p:outputLabel for="txtNombres" value="Nombres" />
+                                            <p:inputText id="txtNombres" value="#{usuarioController.persona.nombres}" required="true"/>
+                                            <p:message for="txtNombres"/>
+
+                                            <p:outputLabel for="txtApellidos" value="Apellidos"/>
+                                            <p:inputText id="txtApellidos" value="#{usuarioController.persona.apellidos}" required="true"/>
+                                            <p:message for="txtApellidos"/>
+
+                                            <p:outputLabel for="cboSexo" value="Sexo"/> 
+                                            <p:selectOneMenu id="cboSexo" value="#{usuarioController.persona.sexo}"  required="true" >
+                                                <f:selectItem itemLabel="----Seleccione----" noSelectionOption="true"/>
+                                                <f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+                                                <f:selectItem itemValue="FEMENINO" itemLabel="Femenino"/>
+                                            </p:selectOneMenu>
+                                            <p:message for="cboSexo"/>
+
+
+                                            <p:outputLabel for="txtDUI" value="DUI"/>
+                                            <p:inputMask id="txtDUI" value="#{usuarioController.persona.dui}"  mask="99999999-9" required="true"/>
+                                            <p:message for="txtDUI"/>
+
+                                            <p:outputLabel for="txtNIT" value="NIT"/>
+                                            <p:inputMask id="txtNIT" value="#{usuarioController.persona.nit}"  mask="9999-999999-999-9" required="true"/>
+                                            <p:message for="txtNIT"/>
+
+                                            <p:outputLabel for="txtFecha" value="Fec. Nacimiento"/>
+                                            <p:calendar id="txtFecha" value="#{usuarioController.persona.fechaNacimiento}" locale="es" pattern="dd/MM/yyyy" required="true"/>
+                                            <p:message for="txtFecha"/>
+
+                                            <p:outputLabel for="txtDireccion" value="Dirección"/>
+                                            <p:inputTextarea id="txtDireccion" value="#{usuarioController.persona.direccion}" required="true" />
+                                            <p:message for="txtDireccion"/>
+
+                                            <p:outputLabel for="txtTelefono" value="Teléfono"/>
+                                            <p:inputMask id="txtTelefono" value="#{usuarioController.persona.telefono}" required="true" mask="9999-9999"/>
+                                            <p:message for="txtTelefono"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:tab>
+
+                                <p:tab title="Datos de Cuenta de Usuario">
+                                    <p:panel header="Datos de Usuario">
+                                        <h:panelGrid columns="5" id="pgUsuario">
+
+                                            <p:outputLabel for="cboTipo" value="Tipo de Cuenta"/>
+                                            <p:selectOneMenu id="cboTipo" value="#{usuarioController.usuario.usuario}"  required="true">
+                                                <f:selectItem itemLabel="----Seleccione----" noSelectionOption="true"/>
+                                                <f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"/>
+                                                <f:selectItem itemValue="OPERARIO" itemLabel="Operario"/>
+                                            </p:selectOneMenu>
+                                            <p:message for="cboTipo"/>
+
+
+                                            <p:outputLabel for="txtUsuario" value="Usuario"/>
+                                            <p:inputText id="txtUsuario" value="#{usuarioController.usuario.usuario}" required="true"/>
+
+                                            <p:outputLabel for="clave1" value="Contraseña"/>
+                                            <p:password id="clave1" value="#{usuarioController.usuario.clave}" 
+                                                        match="clave2"  feedback="true" validatorMessage="Las claves no coinciden"
+                                                        weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno" 
+                                                        promptLabel="Ingrese una Clave" required="true" requiredMessage="Campo Requerido" inline="true"/>
+                                            <p:message for="clave1"/>
+
+                                            <p:outputLabel for="clave2" value="Repetir Contraseña"/>
+                                            <p:password id="clave2"  required="true" requiredMessage="Campo Requerido" inline="true"/>
+                                            <p:message for="clave2"/>
+
+                                            <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
+
+                                                             actionListener="#{usuarioController.modificar()}"     
+                                                             update=":frmMostrar, growl" 
+                                                             oncomplete="PF('dlgmodificar').hide();">
+                                            </p:commandButton>
+                                            <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:tab>
+                            </p:wizard>
+                        </h:form>
+                    </p:dialog>
 
             </ui:define>
 
