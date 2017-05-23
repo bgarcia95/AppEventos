@@ -233,9 +233,9 @@
 
                                                                             <p:outputLabel for="clave1" value="Contraseña:" />
                                                                             <p:password id="clave1" value="#{usuarioController.usuario.clave}" 
-                                                                                        match="clave2"  feedback="true" validatorMessage="Las claves no coinciden"
+                                                                                        match="clave2" feedback="true" validatorMessage="Las claves no coinciden"
                                                                                         weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno" 
-                                                                                        promptLabel="Ingrese una Clave" required="true" requiredMessage="Campo Requerido" inline="true" class="form-control"/>
+                                                                                        promptLabel="Ingrese una Clave" required="true" requiredMessage="Campo Requerido" inline="true"  class="form-control"/>
                                                                             <p:message for="clave1"/>
 
                                                                             <p:outputLabel/><p:outputLabel/><p:outputLabel/> 
@@ -243,6 +243,7 @@
                                                                             <p:outputLabel for="clave2" value="Repetir Contraseña:" style="padding-right: 40px"/>
                                                                             <p:password id="clave2"  required="true" requiredMessage="Campo Requerido" inline="true" class="form-control"/>
                                                                             <p:message for="clave2"/>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
                                                                         </h:panelGrid>
                                                                     </div>
                                                                 </div>
