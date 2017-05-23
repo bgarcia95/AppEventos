@@ -4,10 +4,32 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <body>
+        <head>
+            <style>
+                .modal {
+                    text-align: center;
+                }
 
+                @media screen and (min-width: 768px) { 
+                    .modal:before {
+                        display: inline-block;
+                        vertical-align: middle;
+                        content: " ";
+                        height: 100%;
+                    }
+                }
+
+                .modal-dialog {
+                    display: inline-block;
+                    text-align: left;
+                    vertical-align: middle;
+                }
+            </style>
+        </head>
         <ui:composition template="./../../plantillas/mpAdmin.xhtml">
 
             <ui:define name="content">
@@ -36,9 +58,12 @@
                                                         <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Gestión de Productos</h4></div>
                                                         <div class="panel-body">
                                                             <div class="form-group">
-                                                                
+
                                                                 <div class="col-md-4"></div>
-                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">Ingresar Producto</button></div>
+                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#modalProducto" style="background-color:#D2D4D6;color: black;border-color: black">
+                                                                        Ingresar Producto
+                                                                        <f:ajax event="click" listener="#{productoController.limpiarModal()}"/>
+                                                                    </button></div>
                                                             </div>
                                                             <br/><br/>
                                                             <div class="col-md-12">
@@ -46,55 +71,31 @@
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Productos Registrados</h4></div>
                                                                     <div class="panel-body">
                                                                         <h:form id="frmMostrar">
-                                                                            <p:dataTable var="producto" value="#{productoController.productos}"
-                                                                                         emptyMessage="No hay productos en la base de datos"
-                                                                                         paginator="true" rows="5" paginatorPosition="bottom"
-                                                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
-                                                                                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                                                         rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" >
+                                                                            <b:dataTable value="#{productoController.productos}" var="prod" responsive="true" widgetVar="dtP" style="text-align: center">
+                                                                                <b:dataTableColumn label="Producto" value="#{prod.producto}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Cantidad Actual del Producto" value="#{prod.stockActual}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Unidad de Medida" value="#{prod.unidadMedida}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Cantidad Mínima del Producto" value="#{prod.stockMinimo}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Modificar" style="text-align: center;">
 
-                                                                                <f:facet name="header" >
-                                                                                    <p:outputPanel style="height: available">
-                                                                                        <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
-                                                                                        <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
-
-                                                                                    </p:outputPanel>
-                                                                                    <p:separator/>
-                                                                                    <BR/>
-
-                                                                                </f:facet>
+                                                                                    <!--                                                                                    <p:commandButton icon="ui-icon-pencil"
+                                                                                                                                                                                         oncomplete="PF('dlgModificar').show();">
+                                                                                                                                                                            <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
+                                                                                    
+                                                                                                                                                                        </p:commandButton>-->
 
 
+                                                                                    <button type="button" icon="edit" class="form-control" 
+                                                                                            data-toggle="modal" data-target="#modificarUModal"
+                                                                                            style="background-color:#D2D4D6;color: black;border-color: black"> 
+                                                                                        Modificar
 
-                                                                                <p:column headerText="Producto"   style="text-align: center">
-                                                                                    <h:outputText value="#{producto.producto}"  />
-                                                                                </p:column>
-
-                                                                                <p:column headerText="Cantidad Actual del Producto"  style="text-align: center">
-                                                                                    <p:outputLabel value="#{producto.stockActual}" />
-                                                                                </p:column>
-
-                                                                                <p:column headerText="Unidad de Medida"  style="text-align: center">
-                                                                                    <h:outputText value="#{producto.unidadMedida}"/>
-                                                                                </p:column>
+                                                                                    </button>
 
 
-                                                                                <p:column headerText="Cantidad Minima del Producto"   style="text-align: center">
-                                                                                    <h:outputText value="#{producto.stockMinimo}"/>
-                                                                                </p:column>
+                                                                                </b:dataTableColumn>
 
-
-                                                                                <p:column headerText="MODIFICAR PRODUCTO" style="text-align: center;">
-                                                                                    <p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgmodificar').show();" 
-                                                                                                     update=":frmModificar" > 
-                                                                                        <f:setPropertyActionListener target="#{productoController.producto}" value="#{producto}"/>
-                                                                                        <p:effect type="bounce" event="click" />
-
-                                                                                    </p:commandButton>
-                                                                                </p:column>
-
-
-                                                                            </p:dataTable>
+                                                                            </b:dataTable>
                                                                         </h:form>
                                                                     </div>
                                                                 </div>
@@ -113,113 +114,106 @@
                     </div>
                 </div>
 
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog modal-lg">
+                <!--Este es el dialogo para crear usuario -->
+                <h:form id="frmProductoModal">
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                    <div id="modalProducto" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title" style="text-align: center"><u>Registro de nuevo producto</u></h3>
-                            </div>
-                            <div class="modal-body" style="border-color: black">
-                                <div class="container">
-                                    <h:form id="frmUsuariosModel">
-                                        <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-color: black;background-color: #D2D4D6;">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title" style="text-align: center">Registro de Nuevo Producto</h3>
+                                </div>
+                                <div class="modal-body" style="border-color: black">
+                                    <div class="container" style="border-color: black">
+                                        <br/>
+
 
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                                 <div class="row">
                                                     <div class="col-lg-1"></div>
                                                     <div class="col-lg-10">
-                                                        <div class="form-group">
+                                                        <div class="form-group" >
                                                             <div class="row">
 
-                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;">
-                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Información de Producto</div>
-                                                                    <div class="panel-body">
+                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;" >
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Información sobre producto</div>
+                                                                    <div class="panel-body" align="center">
+                                                                        <h:panelGrid id="grid" columns="3" cellpadding="5">
 
-                                                                        <div class="col-md-5 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombre del Producto-->
-                                                                            Nombre del producto:
-                                                                        </div>
+                                                                            <p:outputLabel for="nombreProd" value="Nombre del Producto:" style="padding-left: 65px" />
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="nombreProd" class="form-control" value="#{productoController.producto.producto}" style=""/> 
+                                                                            <p:inputText id="nombreProd" class="form-control" value="#{productoController.producto.producto}" required="true" requiredMessage="Ingrese el nombre del producto"/> 
 
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                        </div><!--Aqui acaba Nombre Producto-->
-                                                                        <br/><br/>
+                                                                            <p:message for="nombreProd" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-5 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
-                                                                            Unidad de Medida:
-                                                                        </div>
-
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <select class="selectpicker form-control" >
-                                                                                <option>Libras</option>
-                                                                                <option>Kilogramos</option>
-                                                                            </select> 
-
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                        </div><!--Aqui acaba Unidad de Medida-->
-                                                                        <br/><br/>
-
-                                                                        <div class="col-md-5 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Cantidad Inicial de Producto-->
-                                                                            Cantidad inicial de producto:
-                                                                        </div>
-
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="CantIProd" value="#{productoController.producto.stockActual}" class="form-control"/>
-
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                        </div><!--Aqui acaba Cantidad Inicial de Producto-->
-                                                                        <br/><br/>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
 
-                                                                        <div class="col-md-5 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Cantidad mínima de Producto-->
-                                                                            Cantidad mínima de producto:
-                                                                        </div>
+                                                                            <p:outputLabel for="unidadMedida" value="Unidad de Medida:" style="padding-left: 89px" />
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="CantMProd" value="#{productoController.producto.stockMinimo}" class="form-control"/>
 
-                                                                        </div>
 
-                                                                        <div class="col-md-2">
-                                                                        </div><!--Cantidad mínima de producto-->
+                                                                            <h:selectOneMenu value="#{productoController.producto.unidadMedida}" id="unidadMedida" class="form-control" required="true" >
+                                                                                <f:selectItem itemLabel="Libras" itemValue="Libras"/>
+                                                                                <f:selectItem itemLabel="Kilogramos" itemValue="Kilogramos"/>
+                                                                            </h:selectOneMenu>
 
-                                                                        <br/><br/><br/>
-                                                                        <div class ="col-md-5" style=""></div>
-                                                                        <div class="col-md-3" align="center" >
-                                                                            <h:commandButton id="btnRegistrarP"  actionListener="#{productoController.registrar()}" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
+                                                                            <p:message for="unidadMedida" style="padding-left: 10px;"/>
 
-                                                                        </div>
-                                                                        <div class="col-md-4"></div>
-                                                                        
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>   
+
+                                                                            <p:outputLabel for="cantIP" value="Cantidad inicial de producto:" style="padding-left: 15px" />
+
+                                                                            <p:inputText id="cantIP" value="#{productoController.producto.stockActual}" class="form-control" required="true" requiredMessage="Ingrese una cantidad"/>
+
+                                                                            <p:message for="cantIP" style="padding-left: 10px;" />
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>   
+
+                                                                            <p:outputLabel for="cantMP" value="Cantidad mínima del producto:" style="padding-right: 10px" />
+
+                                                                            <p:inputText id="cantMP" value="#{productoController.producto.stockMinimo}" class="form-control" required="true" requiredMessage="Ingrese una cantidad"/>
+                                                                            
+                                                                            <p:message for="cantMP" style="padding-right: 10px;" />
+                                                                            
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>   
+                                                                            
+                                                                        </h:panelGrid>
                                                                     </div>
-                                                                </div>
+                                                                </div><!--Aqui termina el primer panel-->
 
                                                             </div>
                                                         </div>
+                                                        <div class ="col-md-3" style=""></div>
+                                                        <div class="col-md-3" >
+                                                            <b:commandButton id="btnRegistrarProd" update=":frmMostrar,mensaje,grid" actionListener="#{productoController.registrar()}" value="Registrar" class="form-control" 
+                                                                             style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
+                                                                             action="ProductosAdm.xhtml?faces-redirect=true">
+
+                                                            </b:commandButton>
+                                                        </div>
+                                                        <div class="col-md-6"></div>
                                                     </div>
                                                 </div>
 
                                             </div>
 
                                         </div>
-                                    </h:form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer" align="center">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                <div class="modal-footer" align="center" style="border-color: black;text-align: right">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </h:form><!--aqui acaba el dialogo para crear producto-->
 
                 <p:dialog id="dlgModificar" header="Modificar Usuario" showEffect="fade" hideEffect="fade"
                           widgetVar="dlgModificar" modal="true" draggable="false" resizable="false" minWidth="400"  >

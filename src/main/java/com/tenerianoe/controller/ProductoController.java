@@ -42,7 +42,8 @@ public class ProductoController implements Serializable {
     public void registrar() {
         try {
             productoEJB.create(producto);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Producto registrado con éxito"));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
 
@@ -76,6 +77,11 @@ public class ProductoController implements Serializable {
 
     public void setProductos(List<CatalogoProducto> productos) {
         this.productos = productos;
+    }
+    
+        //Metodo para limpiar Factura
+    public void limpiarModal() {
+        this.producto = new CatalogoProducto();
     }
 
 }

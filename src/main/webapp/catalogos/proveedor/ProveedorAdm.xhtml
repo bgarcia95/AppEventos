@@ -46,50 +46,33 @@
                                                                 <div class="panel panel-primary" style="border-color: black">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Productos Registrados</h4></div>
                                                                     <div class="panel-body">
-                                                                        <h:form id="frmMostrar">
-                                                                            <p:dataTable var="proveedor" value="#{proveedorController.proveedores}"
-                                                                                         emptyMessage="No hay usuarios en la base de datos"
-                                                                                         paginator="true" rows="5" paginatorPosition="bottom"
-                                                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
-                                                                                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                                                         rowsPerPageTemplate="5" reflow="true" resizeMode="expand" rowExpandMode="multiply"  widgetVar="data" >
+                                                                       <h:form id="frmMostrar">
+                                                                           <b:dataTable value="#{proveedorController.proveedores}" var="prov" responsive="true" widgetVar="dtP" style="text-align: center">
+                                                                                <b:dataTableColumn label="Proveedor" value="#{prov.proveedor}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Propietario" value="#{prov.propietario}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="DUI" value="#{prov.dui}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="NIT" value="#{prov.nit}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Dirección" value="#{prov.direccion}" style="text-align: center"/>
+                                                                                <b:dataTableColumn label="Modificar" style="text-align: center;">
 
-                                                                                <f:facet name="header" >
-                                                                                    <p:outputPanel style="height: available">
-                                                                                        <h:outputText value="Buscar en todos los campos" style="padding-right: 20px"/>
-                                                                                        <p:inputText  id="globalFilter" onkeyup= "PF('data').filter()" placeholder="Ingrese cualquier palabra o numero"  style="width: 350px"/> 
-
-                                                                                    </p:outputPanel>
-                                                                                    <p:separator/>
-                                                                                    <BR/>
-
-                                                                                </f:facet>
-
-
-
-                                                                                <p:column headerText="Proveedor"   style="text-align: center">
-                                                                                    <h:outputText value="#{proveedor.proveedor}"  />
-                                                                                </p:column>
-                                                                                <p:column headerText="Propietario"  style="text-align: center">
-                                                                                    <h:outputText value="#{proveedor.propietario}"/>
-                                                                                </p:column>
-                                                                                <p:column headerText="NIT"  style="text-align: center">
-                                                                                    <h:outputText value="#{proveedor.nit}"/>
-                                                                                </p:column>
-                                                                                <p:column headerText="DUI"   style="text-align: center">
-                                                                                    <h:outputText value="#{proveedor.dui}"/>
-                                                                                </p:column>
-
-                                                                                <p:column headerText="Direccion"  style="text-align: center">
-                                                                                    <h:outputText value="#{proveedor.direccion}"/>
-                                                                                </p:column>
-
-                                                                                <p:column headerText="MODIFICAR PROVEEDOR" style="text-align: center;">
+                                                                                    <!--                                                                                    <p:commandButton icon="ui-icon-pencil"
+                                                                                                                                                                                         oncomplete="PF('dlgModificar').show();">
+                                                                                                                                                                            <f:setPropertyActionListener target="#{usuarioController.usuario}" value="#{usuario}" />
                                                                                     
-                                                                                </p:column>
+                                                                                                                                                                        </p:commandButton>-->
 
 
-                                                                            </p:dataTable>
+                                                                                    <button type="button" icon="edit" class="form-control" 
+                                                                                            data-toggle="modal" data-target="#modificarUModal"
+                                                                                            style="background-color:#D2D4D6;color: black;border-color: black"> 
+                                                                                        Modificar
+
+                                                                                    </button>
+
+
+                                                                                </b:dataTableColumn>
+
+                                                                            </b:dataTable>
                                                                         </h:form>
                                                                     </div>
                                                                 </div>

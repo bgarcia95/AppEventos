@@ -123,100 +123,78 @@
 
                                                                 <div class="panel panel-primary" style="width: 68%;border-color: black;">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos Personales</div>
-                                                                    <div class="panel-body">
+                                                                    <div class="panel-body" align="center">
+                                                                        <h:panelGrid id="grid" columns="3" cellpadding="5">
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                            Nombres:
-                                                                        </div>
+                                                                            <p:outputLabel for="nombres" value="Nombres:" />
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="nombresU" class="form-control" value="#{usuarioController.persona.nombres}" style=""/> 
+                                                                            <p:inputText id="nombres" class="form-control" value="#{usuarioController.persona.nombres}" required="true" requiredMessage="Ingrese los nombres de la persona"/> 
 
-                                                                        </div>
-                                                                        <br/><br/>      
+                                                                            <p:message for="nombres" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
-                                                                            Apellidos:
-                                                                        </div>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="apellidosU" class="form-control" value="#{usuarioController.persona.apellidos}" style=""/> 
+                                                                            <p:outputLabel for="apellidos" value="Apellidos:"  />
 
-                                                                        </div>
-                                                                        <br/><br/>    
+                                                                            <p:inputText id="apellidos" class="form-control" value="#{usuarioController.persona.apellidos}" required="true" requiredMessage="Ingrese los apellidos de la persona"/> 
 
-                                                                        <b:formGroup>      
-                                                                            <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;">
-                                                                                Sexo:
-                                                                            </div>
+                                                                            <p:message for="apellidos" style="padding-left: 10px;"/>
 
-                                                                            <div class="col-md-5 col-xs-12">
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
-                                                                                <b:selectOneMenu value="#{usuarioController.persona.sexo}" >
+                                                                            <p:outputLabel for="sexo" value="Sexo:" />
 
-                                                                                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
-                                                                                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
-                                                                                </b:selectOneMenu>
-                                                                            </div>
-                                                                            <br/><br/>
-                                                                        </b:formGroup> 
+                                                                            <h:selectOneMenu value="#{usuarioController.persona.sexo}" id="sexo" class="form-control">
 
+                                                                                <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                                                                <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                                                            </h:selectOneMenu>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px"><!--DUI-->
-                                                                            DUI:
-                                                                        </div>
+                                                                            <p:message for="sexo" style="padding-left: 10px;"/>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DUIU" value="#{usuarioController.persona.dui}" class="form-control"/>
+                                                                            <p:outputLabel for="dui" value="DUI:"/>
 
-                                                                        </div>
+                                                                            <p:inputText id="dui" class="form-control" value="#{usuarioController.persona.dui}" required="true" requiredMessage="Ingrese el DUI"/> 
 
-                                                                        <br/><br/>        
+                                                                            <p:message for="dui" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--NIT-->
-                                                                            NIT:
-                                                                        </div>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>      
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="NITU" value="#{usuarioController.persona.nit}" class="form-control"/>
+                                                                            <p:outputLabel for="nit" value="NIT:" />
 
-                                                                        </div>
+                                                                            <p:inputText id="nit" class="form-control" value="#{usuarioController.persona.nit}" required="true" requiredMessage="Ingrese el NIT"/> 
 
-                                                                        <br/><br/>    
+                                                                            <p:message for="nit" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
-                                                                            Fecha Nac.:
-                                                                        </div>
-
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="fechaNac" value="#{usuarioController.persona.dui}" class="form-control"/>
-
-                                                                        </div>
-                                                                        <br/><br/>  
-
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
-                                                                            Dirección:
-                                                                        </div>
-
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DirU" value="#{usuarioController.persona.direccion}" class="form-control"/>
-
-                                                                        </div>
-
-                                                                        <br/><br/>    
-
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Teléfono-->
-                                                                            Teléfono:
-                                                                        </div>
-
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="TelU" value="#{usuarioController.persona.telefono}" class="form-control"/>
-
-                                                                        </div>
-
-                                                                        <br/><br/>   
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>    
 
 
+                                                                            <p:outputLabel for="fechaNac" value="Fecha Nac. :"  style="padding-right: 60px"/>
+
+                                                                            <p:inputText id="fechaNac" class="form-control" value="#{usuarioController.persona.fechaNacimiento}" required="false" requiredMessage="Ingrese la Fecha de Nac."/> 
+
+                                                                            <p:message for="fechaNac" style="padding-left: 10px;"/>
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>    
+
+                                                                            <p:outputLabel for="direccion" value="Dirección:" />
+
+                                                                            <p:inputText id="direccion" class="form-control" value="#{usuarioController.persona.direccion}" required="true" requiredMessage="Ingrese la dirección"/> 
+
+                                                                            <p:message for="direccion" style="padding-left: 10px;"/>
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>    
+
+                                                                            <p:outputLabel for="telefono" value="Teléfono:"  />
+
+                                                                            <p:inputText id="telefono" class="form-control" value="#{usuarioController.persona.telefono}" required="true" requiredMessage="Ingrese el teléfono"/> 
+
+                                                                            <p:message for="telefono" style="padding-left: 10px;"/>
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>    
+
+                                                                        </h:panelGrid>
                                                                     </div>
                                                                 </div><!--Aqui termina el primer panel-->
 
@@ -224,57 +202,54 @@
 
                                                                 <div class="panel panel-primary" style="width: 68%;border-color: black">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos para Cuentas de Usuario</div>
-                                                                    <div class="panel-body">
-                                                                        <b:formGroup>
-                                                                            <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Tipo de Cuenta-->
-                                                                                Tipo de cuenta:
-                                                                            </div>
+                                                                    <div class="panel-body" align="center">
+                                                                        <h:panelGrid id="grid2" columns="3" cellpadding="5">
 
-                                                                            <div class="col-md-5 col-xs-12">
-                                                                                <b:selectOneMenu value="#{usuarioController.usuario.tipo_usuario}">
-                                                                                    <f:selectItem itemLabel="Administrador" itemValue="A"/>
-                                                                                    <f:selectItem itemLabel="Operario" itemValue="O"/>
-                                                                                </b:selectOneMenu>
-
-                                                                            </div>
-                                                                            <br/><br/>
-                                                                        </b:formGroup>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/> 
+                                                                            <p:outputLabel for="tipoU" value="Tipo de Usuario:"  />
 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Usuario-->
-                                                                            Usuario:
-                                                                        </div>
+                                                                            <h:selectOneMenu value="#{usuarioController.usuario.tipo_usuario}" id="tipoU" class="form-control">
+                                                                                <f:selectItem itemLabel="Administrador" itemValue="A"/>
+                                                                                <f:selectItem itemLabel="Operario" itemValue="O"/>
+                                                                            </h:selectOneMenu>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="UsuarioU" class="form-control" value="#{usuarioController.usuario.usuario}" style=""/> 
-                                                                        </div>
-                                                                        <br/><br/>
+
+                                                                            <p:message for="tipoU" style="padding-left: 10px;"/>
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>  
 
 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Contraseña-->
-                                                                            Contraseña:
-                                                                        </div>
+                                                                            <p:outputLabel for="usuario" value="Usuario:"  />
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="ContraU" class="form-control" value="#{usuarioController.usuario.clave}" style=""/> 
+                                                                            <p:inputText id="usuario" class="form-control" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Ingrese el usuario"/> 
 
-                                                                        </div>
-                                                                        <br/><br/>
+                                                                            <p:message for="usuario" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Repetir Contra-->
-                                                                            Repetir Contraseña:
-                                                                        </div>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/> 
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="RepetirContraU" class="form-control"/> 
-                                                                        </div>
+
+
+                                                                            <p:outputLabel for="clave1" value="Contraseña:" />
+                                                                            <p:password id="clave1" value="#{usuarioController.usuario.clave}" 
+                                                                                        match="clave2"  feedback="true" validatorMessage="Las claves no coinciden"
+                                                                                        weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno" 
+                                                                                        promptLabel="Ingrese una Clave" required="true" requiredMessage="Campo Requerido" inline="true" class="form-control"/>
+                                                                            <p:message for="clave1"/>
+
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/> 
+
+                                                                            <p:outputLabel for="clave2" value="Repetir Contraseña:" style="padding-right: 40px"/>
+                                                                            <p:password id="clave2"  required="true" requiredMessage="Campo Requerido" inline="true" class="form-control"/>
+                                                                            <p:message for="clave2"/>
+                                                                        </h:panelGrid>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class ="col-md-3" style=""></div>
                                                             <div class="col-md-3" >
-                                                                <b:commandButton id="btnRegistrarU" update=":frmMostrar,mensaje" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
+                                                                <b:commandButton id="btnRegistrarU" update=":frmMostrar,mensaje,grid,grid2" actionListener="#{usuarioController.registrar()}" value="Registrar" class="form-control" 
                                                                                  style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
                                                                                  action="GestionUsuarioAdm.xhtml?faces-redirect=true">
 
@@ -498,7 +473,8 @@
                             </div>
                         </div>
                     </div>
-                </h:form><!--aqui acaba el dialogo para modificar usuario-->
+                </h:form>
+                <!--aqui acaba el dialogo para modificar usuario-->
 
 
 

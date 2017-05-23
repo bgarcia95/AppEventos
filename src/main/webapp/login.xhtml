@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,30 +35,33 @@
                             <br/>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-lg-3">
-                                        <label style="text-align: right; padding-left: 65px; padding-top: 5px;">Usuario:</label>
-                                    </div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-lg-9" style="padding-right: 50px">
-                                        <h:inputText value="#{loginController.usuario.usuario}" class="form-control"/>
+                                        <b:inputText value="#{loginController.usuario.usuario}" placeholder="Nombre de Usuario">
+                                            <f:facet name="prepend">
+                                                <b:icon name="user" />
+                                            </f:facet>
+                                        </b:inputText>
                                     </div>
                                 </div>
                             </div>
-                            
-                                <div class="row">
 
-                                    <div class="col-lg-3">
-                                        <label style="text-align: right; padding-left: 40px; padding-top: 5px;">Contraseña:</label>
-                                    </div>
-                                    <div class="col-lg-9" style="padding-right: 50px">
-                                        <h:inputSecret value="#{loginController.usuario.clave}" class="form-control"/>
-                                    </div>
-                                    <br/><br/><br/>
-
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-7">
-                                        <h:commandButton class="btn" style="border-color: black;width: 60%" action="#{loginController.iniciarSesion()}" value="Iniciar Sesion"/>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-lg-9" style="padding-right: 50px">
+                                    <b:inputSecret value="#{loginController.usuario.clave}" placeholder="Contraseña">
+                                        <f:facet name="prepend">
+                                            <b:iconAwesome name="key" />
+                                        </f:facet>
+                                    </b:inputSecret>
                                 </div>
+                                <br/><br/><br/>
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-7">
+                                    <h:commandButton class="btn" style="border-color: black;width: 60%" action="#{loginController.iniciarSesion()}" value="Iniciar Sesion"/>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
