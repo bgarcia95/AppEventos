@@ -147,7 +147,8 @@
 
                                                                             <p:outputLabel for="nombreProd" value="Nombre del Producto:" style="padding-left: 65px" />
 
-                                                                            <p:inputText id="nombreProd" class="form-control" value="#{productoController.producto.producto}" required="true" requiredMessage="Ingrese el nombre del producto"/> 
+                                                                            <p:inputText id="nombreProd" class="form-control" value="#{productoController.producto.producto}" 
+                                                                                         required="true" requiredMessage="Campo Requerido"/> 
 
                                                                             <p:message for="nombreProd" style="padding-left: 10px;"/>
 
@@ -170,7 +171,8 @@
 
                                                                             <p:outputLabel for="cantIP" value="Cantidad inicial de producto:" style="padding-left: 15px" />
 
-                                                                            <p:inputText id="cantIP" value="#{productoController.producto.stockActual}" class="form-control" required="true" requiredMessage="Ingrese una cantidad"/>
+                                                                            <p:inputText id="cantIP" value="#{productoController.producto.stockActual}" class="form-control" 
+                                                                                         required="true" requiredMessage="Campo Requerido"/>
 
                                                                             <p:message for="cantIP" style="padding-left: 10px;" />
 
@@ -178,7 +180,8 @@
 
                                                                             <p:outputLabel for="cantMP" value="Cantidad mínima del producto:" style="padding-right: 10px" />
 
-                                                                            <p:inputText id="cantMP" value="#{productoController.producto.stockMinimo}" class="form-control" required="true" requiredMessage="Ingrese una cantidad"/>
+                                                                            <p:inputText id="cantMP" value="#{productoController.producto.stockMinimo}" class="form-control" 
+                                                                                         required="true" requiredMessage="Campo Requerido"/>
                                                                             
                                                                             <p:message for="cantMP" style="padding-right: 10px;" />
                                                                             

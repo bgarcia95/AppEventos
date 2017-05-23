@@ -46,8 +46,8 @@
                                                                 <div class="panel panel-primary" style="border-color: black">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color:#04536C;color: white"><h4>Productos Registrados</h4></div>
                                                                     <div class="panel-body">
-                                                                       <h:form id="frmMostrar">
-                                                                           <b:dataTable value="#{proveedorController.proveedores}" var="prov" responsive="true" widgetVar="dtP" style="text-align: center">
+                                                                        <h:form id="frmMostrar">
+                                                                            <b:dataTable value="#{proveedorController.proveedores}" var="prov" responsive="true" widgetVar="dtP" style="text-align: center">
                                                                                 <b:dataTableColumn label="Proveedor" value="#{prov.proveedor}" style="text-align: center"/>
                                                                                 <b:dataTableColumn label="Propietario" value="#{prov.propietario}" style="text-align: center"/>
                                                                                 <b:dataTableColumn label="DUI" value="#{prov.dui}" style="text-align: center"/>
@@ -119,83 +119,64 @@
 
                                                                 <div class="panel panel-primary" style="width: 68%;border-color: black;">
                                                                     <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos del Proveedor</div>
-                                                                    <div class="panel-body">
+                                                                    <div class="panel-body" align="center">
+                                                                        <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                                                            <p:outputLabel for="nombreProv" value="Nombre del Proveedor:" />
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                            Nombre de proveedor:
-                                                                        </div>
+                                                                            <p:inputText id="nombreProv" class="form-control" value="#{proveedorController.proveedor.proveedor}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="nombreProv" class="form-control" value="#{proveedorController.proveedor.proveedor}" style=""/> 
+                                                                            <p:message for="nombreProv" style="padding-left: 10px;"/>
 
-                                                                        </div>
-                                                                        <br/><br/>      
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
-                                                                            Nombre del propietario:
-                                                                        </div>
+                                                                            <p:outputLabel for="nombreProp" value="Nombre del Propietario:" />
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="nombreProp" class="form-control" value="#{proveedorController.proveedor.propietario}" style=""/> 
+                                                                            <p:inputText id="nombreProp" class="form-control" value="#{proveedorController.proveedor.propietario}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        </div>
-                                                                        <br/><br/>    
+                                                                            <p:message for="nombreProp" style="padding-left: 10px;"/>
 
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>
 
+                                                                            <p:outputLabel for="dui" value="DUI:" style="padding-left: 127px"/>
 
+                                                                            <p:inputText id="dui" class="form-control" value="#{proveedorController.proveedor.dui}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px"><!--DUI-->
-                                                                            DUI:
-                                                                        </div>
+                                                                            <p:message for="dui" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DUIU" value="#{proveedorController.proveedor.dui}" class="form-control"/>
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>      
 
-                                                                        </div>
+                                                                            <p:outputLabel for="nit" value="NIT:" style="padding-left: 130px"/>
 
-                                                                        <br/><br/>        
+                                                                            <p:inputText id="nit" class="form-control" value="#{proveedorController.proveedor.nit}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--NIT-->
-                                                                            NIT:
-                                                                        </div>
+                                                                            <p:message for="nit" style="padding-left: 10px;"/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="NITU" value="#{proveedorController.proveedor.nit}" class="form-control"/>
-
-                                                                        </div>
-
-                                                                        <br/><br/>    
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>   
 
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
-                                                                            Dirección:
-                                                                        </div>
+                                                                            <p:outputLabel for="dir" value="Dirección:" style="padding-left: 83px"/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DirU" value="#{proveedorController.proveedor.direccion}" class="form-control"/>
+                                                                            <p:inputText id="dir" class="form-control" value="#{proveedorController.proveedor.direccion}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        </div>
+                                                                            <p:message for="dir" style="padding-left: 10px;"/>
 
-                                                                        <br/><br/>    
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>    
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Teléfono-->
-                                                                            Teléfono:
-                                                                        </div>
+                                                                            <p:outputLabel for="tel" value="Teléfono:" style="padding-left: 92px"/>
 
-                                                                        <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="TelU" value="#{proveedorController.proveedor.telefono}" class="form-control"/>
+                                                                            <p:inputText id="tel" class="form-control" value="#{proveedorController.proveedor.telefono}" required="true" requiredMessage="Campo Requerido"/> 
 
-                                                                        </div>
+                                                                            <p:message for="tel" style="padding-left: 10px;"/>
 
-                                                                        <br/> 
-
+                                                                            <p:outputLabel/><p:outputLabel/><p:outputLabel/>  
+                                                                        </h:panelGrid>
                                                                     </div>
                                                                 </div><!--Aqui termina el primer panel-->
                                                             </div>
                                                         </div>
                                                         <div class ="col-md-3" style=""></div>
                                                         <div class="col-md-3" >
-                                                            <b:commandButton id="btnRegistrarP" update=":frmMostrar,mensaje" actionListener="#{proveedorController.registrar()}" value="Registrar" class="form-control" 
+                                                            <b:commandButton id="btnRegistrarP" update=":frmMostrar,mensaje,grid" actionListener="#{proveedorController.registrar()}" value="Registrar" class="form-control" 
                                                                              style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
                                                                              action="ProveedorAdm.xhtml?faces-redirect=true">
 
@@ -218,7 +199,7 @@
                 </h:form><!--aqui acaba el dialogo para crear usuario-->
 
 
-                
+
             </ui:define>
 
         </ui:composition>
