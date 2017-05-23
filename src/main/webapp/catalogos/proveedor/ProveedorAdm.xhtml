@@ -85,12 +85,7 @@
                                                                                 </p:column>
 
                                                                                 <p:column headerText="MODIFICAR PROVEEDOR" style="text-align: center;">
-                                                                                    <p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgmodificar').show();" 
-                                                                                                     update=":frmModificar" > 
-                                                                                        <f:setPropertyActionListener target="#{proveedorController.proveedor}" value="#{proveedor}"/>
-                                                                                        <p:effect type="bounce" event="click" />
-
-                                                                                    </p:commandButton>
+                                                                                    
                                                                                 </p:column>
 
 
@@ -124,7 +119,7 @@
                             <div class="modal-content">
                                 <div class="modal-header" style="border-color: black;background-color: #D2D4D6;">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title" style="text-align: center">Creación de Nuevo Usuario</h3>
+                                    <h3 class="modal-title" style="text-align: center">Registro de Nuevo Proveedor</h3>
                                 </div>
                                 <div class="modal-body" style="border-color: black">
                                     <div class="container" style="border-color: black">
@@ -140,7 +135,7 @@
                                                             <div class="row">
 
                                                                 <div class="panel panel-primary" style="width: 68%;border-color: black;">
-                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos Personales</div>
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos del Proveedor</div>
                                                                     <div class="panel-body">
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
@@ -163,7 +158,7 @@
                                                                         </div>
                                                                         <br/><br/>    
 
-                                                                        
+
 
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px"><!--DUI-->
@@ -209,27 +204,24 @@
 
                                                                         </div>
 
-                                                                        <br/><br/>   
-
+                                                                        <br/> 
 
                                                                     </div>
                                                                 </div><!--Aqui termina el primer panel-->
-
-                                                                
                                                             </div>
-                                                            <div class ="col-md-3" style=""></div>
-                                                            <div class="col-md-3" >
-                                                                <b:commandButton id="btnRegistrarP" update=":frmMostrar,mensaje" actionListener="#{proveedorController.registrar()}" value="Registrar" class="form-control" 
-                                                                                 style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
-                                                                                 action="ProveedorAdm.xhtml?faces-redirect=true">
-
-                                                                </b:commandButton>
-
-                                                            </div>
-                                                            <div class="col-md-6"></div>
                                                         </div>
+                                                        <div class ="col-md-3" style=""></div>
+                                                        <div class="col-md-3" >
+                                                            <b:commandButton id="btnRegistrarP" update=":frmMostrar,mensaje" actionListener="#{proveedorController.registrar()}" value="Registrar" class="form-control" 
+                                                                             style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
+                                                                             action="ProveedorAdm.xhtml?faces-redirect=true">
+
+                                                            </b:commandButton>
+                                                        </div>
+                                                        <div class="col-md-6"></div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -241,65 +233,9 @@
                         </div>
                     </div>
                 </h:form><!--aqui acaba el dialogo para crear usuario-->
+
+
                 
-                
-                <p:dialog id="dlg" header="MODIFICAR PROVEEDOR" showEffect="modal" hideEffect="fade" widgetVar="dlgmodificar" modal="true">
-
-                    <div>
-                        <p:growl showDetail="No se realizo el registro"  showSummary="true" id="growl1"  />
-                        <p:messages id="mensaje" />
-                        <h:form id="frmModificar">
-                            <p:fieldset  legend="REGISTRO DE PROVEEDORES" style="align-content: center;align-self: center" >
-                                <div>
-                                    <p:panel id="panelDatos" header="DATOS DEL PROVEEDOR" toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelDt" style="align-content: center;align-items: center;width: content-box">
-                                        <div align="center"  style="padding: auto; width: 300"  >
-                                            <h:panelGrid cellpadding="15" columns="3" id="pgDatos"   style="align-items: center; align-content: center; "  columnClasses="centered" >
-
-                                                <p:outputLabel for="txtProveedor" value="Nombre de Proveedor" />
-                                                <p:inputText id="txtProveedor" value="#{proveedorController.proveedor.proveedor}" required="true"/>
-                                                <p:message for="txtProveedor"/>
-
-                                                <p:outputLabel for="txtPropietario" value="Nombre de Propietario"/>
-                                                <p:inputText id="txtPropietario" value="#{proveedorController.proveedor.propietario}" required="true"/>
-                                                <p:message for="txtPropietario"/>
-
-
-                                                <p:outputLabel for="txtDUI" value="DUI"/>
-                                                <p:inputMask id="txtDUI" value="#{proveedorController.proveedor.dui}"  mask="99999999-9" required="true"/>
-                                                <p:message for="txtDUI"/>
-
-                                                <p:outputLabel for="txtNIT" value="NIT"/>
-                                                <p:inputMask id="txtNIT" value="#{proveedorController.proveedor.nit}"  mask="9999-999999-999-9" required="true"/>
-                                                <p:message for="txtNIT"/>
-
-                                                <p:outputLabel for="txtDireccion" value="Dirección"/>
-                                                <p:inputTextarea id="txtDireccion" value="#{proveedorController.proveedor.direccion}" required="true" />
-                                                <p:message for="txtDireccion"/>
-
-                                                <p:outputLabel for="txtTelefono" value="Teléfono"/>
-                                                <p:inputMask id="txtTelefono" value="#{proveedorController.proveedor.telefono}" required="true" mask="9999-9999"/>
-                                                <p:message for="txtTelefono"/>
-
-                                                <p:commandButton icon ="ui-icon-check" value="Modificar Proveedor" 
-
-                                                                 actionListener="#{proveedorController.modificar()}"     
-                                                                 update=":frmMostrar,panelDatos, growl1" 
-                                                                 action="/catalogos/proveedor/proveedores.xhtml" 
-                                                                 oncomplete="PF('dlgmodificar').hide();">
-                                                </p:commandButton>
-                                                <p:commandButton value="Regresar" onclick="PF('dlgmodificar').hide();"/>
-
-                                            </h:panelGrid>
-                                        </div>
-                                    </p:panel>
-                                    <br/>
-                                </div>
-                            </p:fieldset>
-                        </h:form>
-                        <br/>
-
-                    </div>
-                </p:dialog>
             </ui:define>
 
         </ui:composition>
