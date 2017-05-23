@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <body>
 
@@ -38,7 +39,7 @@
                                                             <div class="form-group">
 
                                                                 <div class="col-md-4"></div>
-                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#myModal" style="background-color:#D2D4D6;color: black;border-color: black">Ingresar Proveedor</button></div>
+                                                                <div class="col-md-4"><button type="button" class="form-control" data-toggle="modal" data-target="#modalProveedores" style="background-color:#D2D4D6;color: black;border-color: black">Ingresar Proveedor</button></div>
                                                             </div>
                                                             <br/><br/>
                                                             <div class="col-md-12">
@@ -113,22 +114,22 @@
                 </div>
 
 
+                <!--Este es el dialogo para crear usuario -->
+                <h:form id="frmProveedorModal">
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                    <div id="modalProveedores" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
 
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title" style="text-align: center"><u>Registro de nuevo proveedor</u></h3>
-                            </div>
-                            <div class="modal-body" style="border-color: black">
-                                <br/>
-                                <div class="container">
-                                    <h:form id="frmProveedoresModel">
-                                        <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-color: black;background-color: #D2D4D6;">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title" style="text-align: center">Creación de Nuevo Usuario</h3>
+                                </div>
+                                <div class="modal-body" style="border-color: black">
+                                    <div class="container" style="border-color: black">
+                                        <br/>
+
 
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -138,114 +139,110 @@
                                                         <div class="form-group">
                                                             <div class="row">
 
-                                                                <div class="panel panel-primary" style="width: 70%;border-color: black;">
-                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos del proveedor</div>
+                                                                <div class="panel panel-primary" style="width: 68%;border-color: black;">
+                                                                    <div class="panel-heading" style="border-color: black;text-align: center;background-color: #04536C">Datos Personales</div>
                                                                     <div class="panel-body">
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Nombres-->
-                                                                            Nombre del proveedor:
+                                                                            Nombre de proveedor:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="nombreProv" class="form-control" value="#{usuarioController.persona.nombres}" style=""/> 
+                                                                            <h:inputText id="nombreProv" class="form-control" value="#{proveedorController.proveedor.proveedor}" style=""/> 
 
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Nombres-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>      
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Apellidos-->
                                                                             Nombre del propietario:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="NombreProp" class="form-control" value="#{usuarioController.persona.apellidos}" style=""/> 
+                                                                            <h:inputText id="nombreProp" class="form-control" value="#{proveedorController.proveedor.propietario}" style=""/> 
 
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                        </div><!--Aqui acaba Apellidos-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>    
 
-                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--DUI-->
+                                                                        
+
+
+                                                                        <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px"><!--DUI-->
                                                                             DUI:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DUIU" value="#{usuarioController.persona.dui}" class="form-control"/>
+                                                                            <h:inputText id="DUIU" value="#{proveedorController.proveedor.dui}" class="form-control"/>
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div>      
+                                                                        <br/><br/>        
 
-                                                                        <br/><br/>
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--NIT-->
                                                                             NIT:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="NITU" value="#{usuarioController.persona.nit}" class="form-control"/>
+                                                                            <h:inputText id="NITU" value="#{proveedorController.proveedor.nit}" class="form-control"/>
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba NIT-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>    
+
 
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Direccion-->
                                                                             Dirección:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="DirProv" value="#{usuarioController.persona.direccion}" class="form-control"/>
+                                                                            <h:inputText id="DirU" value="#{proveedorController.proveedor.direccion}" class="form-control"/>
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba Direccion-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>    
+
                                                                         <div class="col-md-4 col-xs-12" style="text-align: right;padding-top: 5px;"><!--Teléfono-->
                                                                             Teléfono:
                                                                         </div>
 
                                                                         <div class="col-md-5 col-xs-12">
-                                                                            <h:inputText id="TelProv" value="#{usuarioController.persona.telefono}" class="form-control"/>
+                                                                            <h:inputText id="TelU" value="#{proveedorController.proveedor.telefono}" class="form-control"/>
 
                                                                         </div>
 
-                                                                        <div class="col-md-3">
-                                                                        </div><!--aqui acaba Teléfono-->
-                                                                        <br/><br/>
+                                                                        <br/><br/>   
 
-
-                                                                        <div class ="col-md-5" style=""></div>
-                                                                        <div class="col-md-3" align="center" >
-                                                                            <h:commandButton id="btnRegistrarP"  actionListener="#{productoController.registrar()}" value="Registrar" class="form-control" style="background-color:#D2D4D6;color: black;border-color: black"/>
-
-                                                                        </div>
-                                                                        <div class="col-md-4"></div>
 
                                                                     </div>
-                                                                </div>
+                                                                </div><!--Aqui termina el primer panel-->
+
+                                                                
+                                                            </div>
+                                                            <div class ="col-md-3" style=""></div>
+                                                            <div class="col-md-3" >
+                                                                <b:commandButton id="btnRegistrarP" update=":frmMostrar,mensaje" actionListener="#{proveedorController.registrar()}" value="Registrar" class="form-control" 
+                                                                                 style="background-color:#D2D4D6;color: black;border-color: black;width:85%" 
+                                                                                 action="ProveedorAdm.xhtml?faces-redirect=true">
+
+                                                                </b:commandButton>
 
                                                             </div>
+                                                            <div class="col-md-6"></div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
-                                    </h:form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer" align="center">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                <div class="modal-footer" align="center" style="border-color: black;text-align: right">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </h:form><!--aqui acaba el dialogo para crear usuario-->
+                
+                
                 <p:dialog id="dlg" header="MODIFICAR PROVEEDOR" showEffect="modal" hideEffect="fade" widgetVar="dlgmodificar" modal="true">
 
                     <div>
