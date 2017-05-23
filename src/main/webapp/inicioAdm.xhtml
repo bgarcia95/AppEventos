@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -26,20 +27,24 @@
                                                 <div class="panel panel-primary" style="border-color: black;"/>
                                                 <br/>
                                                 <div class="row">
+                                                    <h:form>
+                                                        <div class="col-lg-4" align="center">
+                                                            <h:commandButton image="recursos/imagenes/usuarios2.png" action="/administracion/GestionUsuarioAdm.xhtml?faces-redirect=true" style="width: 200px;height: 200px"/>
 
-                                                    <div class="col-lg-4" align="center">
-                                                        <h:commandButton image="recursos/imagenes/usuarios2.png" style="width: 200px;height: 200px"/>
-                                                        <h3>Usuarios</h3>                                         
-                                                    </div>
-                                                    <div class="col-lg-4" align="center">
-                                                        <h:commandButton image="recursos/imagenes/productos.png"  style="width: 200px;height: 200px"/>
-                                                        <h3>Inventarios</h3>                                   
-                                                    </div>
-
-                                                    <div class="col-lg-4" align="center">
-                                                        <h:commandButton image="recursos/imagenes/reporte3.png" action="/AppEventos/login.xhtml?faces-redirect=true" style="width: 200px;height: 200px"/>
-                                                        <h3>Reportes</h3>                   
-                                                    </div>                                
+                                                            <h3>Usuarios</h3>                                         
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-4" align="center">
+                                                            <h:commandButton image="recursos/imagenes/proveedores1.png" action="/catalogos/proveedor/ProveedorAdm.xhtml?faces-redirect=true" style="width: 200px;height: 200px"/>
+                                                            <h3>Proveedores</h3>                   
+                                                        </div> 
+                                                        
+                                                        <div class="col-lg-4" align="center">
+                                                            <h:commandButton image="recursos/imagenes/productos.png"  action="/catalogos/Productos/ProductosAdm.xhtml?faces-redirect=true" style="width: 200px;height: 200px"/>
+                                                            <h3>Productos</h3>                                   
+                                                        </div>
+  
+                                                    </h:form>
                                                 </div>
                                                 <br/>
                                                 <div class="panel panel-primary" style="border-color: black;"/>
@@ -50,6 +55,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </ui:define>
